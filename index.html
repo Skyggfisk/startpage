@@ -7,25 +7,75 @@
 
   <title></title>
 
-  <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100|Orbitron' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/weather-icons.min.css">
+  <link rel="stylesheet" href="css/weather-icons-wind.min.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <script src="script/jquery-3.3.1.min.js"></script>
   <script src="script/jquery.backstretch.min.js"></script>
+  <script src="script/jquery.simpleWeather.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-  </div>
+  <section class="side-panel">
+    <div class="container">
+      <div id="logo-card">
+        <div id="logo-text">logo</div>
+        <div id="logo-image">
+          <img src="images\logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div id="greetings-card">
+        <p class="greetings">
+          <span class="greetings-title"></span><br>
+          <span class="greetings-name"></span>
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="weather-card">
+        <p class="weather">
+          <span class="weather-location"></span><br>
+          <span class="weather-icon"></span>
+          <span class="weather-temperature"></span><br>
+          <span class="weather-description"></span>
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <div id="datetime-card">
+        <p class="clock">
+          <span class="time-hours"></span> :
+          <span class="time-minutes"></span> :
+          <span class="time-seconds"></span><br>
+        </p>
+        <p class="date">
+          <span class="date-day"></span> .
+          <span class="date-month"></span> .
+          <span class="date-year"></span>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="center-panel">
+    <div class="container">
+      <div>searches</div>
+    </div>
+    <div class="container">
+      <div>bookmarks</div>
+    </div>
+  </section>
+  <section class="side-panel">
+    <div class="container">
+      <div>terminal</div>
+    </div>
+    <div class="container">
+      <div>rss feeds</div>
+    </div>
+  </section>
 </body>
 <script src="script/var.js"></script>
 <script src="script/app.js"></script>
