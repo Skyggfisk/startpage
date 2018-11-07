@@ -8,12 +8,16 @@
   <title></title>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100|Orbitron' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/weather-icons.css">
   <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
+    type="text/css"> -->
+  <link rel="stylesheet" href="css/weather-icons.min.css">
 
   <script src="script/jquery-3.3.1.min.js"></script>
   <script src="script/jquery.backstretch.min.js"></script>
   <script src="script/jquery.simpleWeather.min.js"></script>
+  <script src="script/moment.js"></script>
+  <script src="script/feedEk.js"></script>
 </head>
 
 <body>
@@ -22,7 +26,7 @@
       <div id="logo-card">
         <div id="logo-text">logo</div>
         <div id="logo-image">
-          <img src="images\logo.png" alt="">
+          <img src="images\tiwaz-ring.png" alt="">
         </div>
       </div>
     </div>
@@ -47,14 +51,10 @@
     <div class="container">
       <div id="datetime-card">
         <p class="clock">
-          <span class="time-hours"></span> :
-          <span class="time-minutes"></span> :
-          <span class="time-seconds"></span><br>
+          <span class="time-hours"></span>
         </p>
         <p class="date">
-          <span class="date-day"></span> .
-          <span class="date-month"></span> .
-          <span class="date-year"></span>
+          <span class="date-day"></span>
         </p>
       </div>
     </div>
@@ -64,7 +64,14 @@
       <div>searches</div>
     </div>
     <div class="container">
-      <div>bookmarks</div>
+      <div class="quote-card">
+
+      </div>
+    </div>
+    <div class="container">
+      <div id="bookmarks-card">
+
+      </div>
     </div>
   </section>
   <section class="side-panel">
@@ -72,7 +79,9 @@
       <div>terminal</div>
     </div>
     <div class="container">
-      <div>rss feeds</div>
+      <div id="rss-card">
+
+      </div>
     </div>
   </section>
 </body>

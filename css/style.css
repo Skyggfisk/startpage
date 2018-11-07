@@ -2,11 +2,78 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+  font-family: weathericons-regular-webfont, Roboto Light, Verdana, Tahoma,
+    Arial, Helvetica, sans-serif;
 }
 
 body {
   background-color: darkgrey;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: antiquewhite;
+}
+
+.rss-title {
+  font-size: 20px;
+}
+
+.itemTitle {
+  font-size: 15px;
+}
+
+.itemDate {
+  font-size: 10px;
+  color: darkgrey;
+  padding: 0 0 10px;
+}
+
+.quote-text {
+  padding: 10px 30px 0px;
+}
+
+.quote-author {
+  font-size: 20px;
+  padding: 0 0 10px;
+  color: darkgrey;
+}
+
+#logo-image {
+  padding: 0 0 10px;
+}
+
+#bookmarks-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-rows: repeat(0, 50px);
+  box-sizing: border-box;
+}
+
+#bookmarks-card > .favorite {
+  font-size: 15px;
+  padding: 10 10px;
+  text-align: left;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+#bookmarks-card li {
+  list-style: none;
+}
+
+/*TODO figure how to present short and link seperately in nice list */
+span.short {
+  width: 25%;
+}
+
+span.link {
+  width: 75%;
 }
 
 section.side-panel {
@@ -39,8 +106,6 @@ section.center-panel {
 
 .container > div {
   background-color: dimgrey;
-  /* margin: 10px;
-  padding: 5px; */
   font-size: 30px;
   color: whitesmoke;
   border-style: solid;
@@ -51,5 +116,4 @@ section.center-panel {
   margin: auto;
   width: 100%;
   height: 100%;
-  /* padding: 25% 0; */
 }
