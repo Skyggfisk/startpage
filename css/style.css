@@ -67,13 +67,20 @@ a {
   list-style: none;
 }
 
-/*TODO figure how to present short and link seperately in nice list */
+.favorite > li {
+  display: flex;
+}
+
 span.short {
   width: 25%;
 }
 
 span.link {
   width: 75%;
+}
+
+.favorite > p.title {
+  font-size: 20px;
 }
 
 section.side-panel {

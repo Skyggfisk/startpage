@@ -8,7 +8,12 @@ var quotes = [
   [
     "Tradition is not the worship of ashes, but the preservation of fire.",
     "Gustav Mahler"
-  ]
+  ],
+  [
+    "Man cannot remake himself without suffering, for he is both the marble and the sculptor",
+    "Alexis Carrel"
+  ],
+  ["Only the dead have seen the end of war.", "Plato"]
 ];
 
 var images = [
