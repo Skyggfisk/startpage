@@ -1,30 +1,33 @@
-// Sets background image using backstretch
 function init() {
+  // Sets background image using backstretch
   $("body").backstretch(
     "images/" + images[Math.round(Math.random() * (images.length - 1))],
     { fade: 300 }
   );
+
+  // init all the things
+  initTitle();
+  initQuote();
+  initGreetings();
+  initBookmarks();
+  initClock();
+  initWeather();
+  initRss();
 }
 
-// call all functions
-initGreetings();
-initClock();
-initTitle();
-initWeather();
-initRss();
-initQuote();
-initBookmarks();
-
+// Grab a random title and set it
 function initTitle() {
   var r = Math.round(Math.random() * (titles.length - 1));
   $("title").html(titles[r]);
   $("#logo-text").html(titles[r]);
 }
 
+// Greet the user
 function initGreetings() {
   $(".greetings .greetings-name").html(user);
 }
 
+// Create a feed for each in var.js
 function initRss() {
   $(feeds).each(function(index, feed) {
     $("#rss-card").append(`<p class="rss-title">${feed[0]}</p>`);
@@ -39,6 +42,7 @@ function initRss() {
   });
 }
 
+// Grab a random quote and display it
 function initQuote() {
   var r = Math.round(Math.random() * (quotes.length - 1));
   var q = quotes[r];
@@ -46,6 +50,7 @@ function initQuote() {
   $(".quote-card").append(`<p class="quote-author">-${q[1]}</p>`);
 }
 
+// Create a favorite div for each in var.js and display
 function initBookmarks() {
   var element = "";
   $(favorites).each(function(index, group) {
@@ -72,6 +77,7 @@ function initBookmarks() {
   $("#bookmarks-card").append(element);
 }
 
+// jQuery simpleWeather and display it on success, else display error
 function initWeather() {
   $.simpleWeather({
     zipcode: "",
@@ -92,6 +98,7 @@ function initWeather() {
   });
 }
 
+// Create the clock, display date and time and greet based on time of day
 function initClock() {
   var today = new Date();
   var h = today.getHours();

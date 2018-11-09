@@ -73,7 +73,6 @@ var favorites = [
     "Reddit",
     [
       ["frontpage", "https://www.reddit.com/", "fp"],
-      ["world of warcraft", "https://www.reddit.com/r/wow/", "wow"],
       ["4chan", "https://www.reddit.com/r/4chan/", "4ch"],
       ["world news", "https://www.reddit.com/r/worldnews/", "wn"],
       ["programmer humor", "https://www.reddit.com/r/ProgrammerHumor/", "ph"]
