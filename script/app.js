@@ -34,11 +34,14 @@ function initRss() {
     $("#rss-card").append("<div id='" + index + "'></div");
     $("#rss-card #" + index).FeedEk({
       FeedUrl: feed[1],
-      MaxCount: 5,
+      MaxCount: 10,
       ShowDesc: false,
       DateFormat: "DD.MM.YYYY",
       DateFormatLang: "en"
     });
+    if ($(window).width() > 768) {
+      $("#rss-card").slimscroll({ height: "800px" });
+    }
   });
 }
 

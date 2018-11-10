@@ -2,7 +2,7 @@ var user = "skyggfisk";
 
 var locations = ["551890"];
 
-var titles = ["Soothing shadows", "Oathbound", "Grab a coffee"];
+var titles = ["Soothing shadows", "Oathbound", "Grab a cuppa"];
 
 var quotes = [
   [
@@ -41,7 +41,8 @@ var images = [
 ];
 var feeds = [
   ["Hacker news", "https://news.ycombinator.com/rss"],
-  ["Version2", "https://www.version2.dk/it-nyheder/rss"]
+  ["Version2", "https://www.version2.dk/it-nyheder/rss"],
+  ["r/denmark", "https://www.reddit.com/r/denmark/.rss"]
 ];
 
 var favorites = [
