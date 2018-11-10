@@ -97,7 +97,8 @@ span.link {
 }
 
 [class*="col-"] {
-  width: 96%;
+  justify-content: center;
+  width: 98.2%;
 }
 
 /* desktop styling */
@@ -109,6 +110,11 @@ span.link {
 
   #bookmarks-card > .favorite {
     height: 150px;
+  }
+
+  #rss-card {
+    height: 800px;
+    overflow: auto;
   }
 
   .col-1 {
