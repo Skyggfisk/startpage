@@ -42,7 +42,7 @@ var images = [
 var feeds = [
   ["Hacker news", "https://news.ycombinator.com/rss"],
   ["Version2", "https://www.version2.dk/it-nyheder/rss"],
-  ["r/denmark", "https://www.reddit.com/r/denmark/.rss"]
+  ["tv2", "https://feeds.tv2.dk/nyhederne_seneste/rss"]
 ];
 
 var favorites = [
