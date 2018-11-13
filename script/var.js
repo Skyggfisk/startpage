@@ -2,7 +2,14 @@ var user = "skyggfisk";
 
 var locations = ["551890"];
 
-var titles = ["Soothing shadows", "Oathbound", "Grab a cuppa"];
+var titles = [
+  "Soothing shadows",
+  "Oathbound",
+  "Grab a cuppa",
+  "Go for a run",
+  "Hey you, check your posture",
+  "Give me 10 push-ups!"
+];
 
 var quotes = [
   [
@@ -13,7 +20,8 @@ var quotes = [
     "Man cannot remake himself without suffering, for he is both the marble and the sculptor",
     "Alexis Carrel"
   ],
-  ["Only the dead have seen the end of war.", "Plato"]
+  ["Only the dead have seen the end of war.", "Plato"],
+  ["It is no bad thing celebrating a simple life.", "J. R. R. Tolkien"]
 ];
 
 var images = [
@@ -60,14 +68,16 @@ var favorites = [
     "Social",
     [
       ["facebook", "https://www.facebook.com/", "fb"],
+      ["youtube", "https://www.youtube.com/", "yt"],
+      ["twitch", "https://www.twitch.tv/", "ttv"],
       ["twitter", "https://twitter.com/", "twi"]
     ]
   ],
   [
-    "Download",
+    "Music",
     [
-      ["majorgeeks", "https://www.majorgeeks.com/", "mg"],
-      ["T411", "http://www.t411.in/", "t411"]
+      ["bandcamp", "https://www.bandcamp.com/", "bc"],
+      ["soundcloud", "http://www.https://soundcloud.com/", "sc"]
     ]
   ],
   [
