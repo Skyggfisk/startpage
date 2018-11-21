@@ -93,6 +93,7 @@ var favorites = [
     "4chan",
     [
       ["home", "http://4chan.org/", "/"],
+      ["politics", "https://boards.4chan.org/pol/catalog", "/pol/"],
       ["wallpaper", "http://4chan.org/wg/catalog", "/wg/"],
       ["technology", "http://4chan.org/g/catalog", "/g/"]
     ]
