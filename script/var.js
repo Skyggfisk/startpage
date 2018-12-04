@@ -113,7 +113,7 @@ var favorites = [
       ["amazon", "https://www.amazon.com/", "amz"],
       ["graphic", "https://graphicburger.com/", "gb"],
       ["gutenberg", "https://www.gutenberg.org/", "pg"],
-      ["imgur", "https://imgur.com/", "img"]
+      ["rainy mood", "https://rainymood.com/", "rm"]
     ]
   ]
 ];
