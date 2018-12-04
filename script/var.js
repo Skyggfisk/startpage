@@ -8,7 +8,8 @@ var titles = [
   "Grab a cuppa",
   "Go for a run",
   "Hey you, check your posture",
-  "Give me 10 push-ups!"
+  "Give me 10 push-ups!",
+  "The ride never ends."
 ];
 
 var quotes = [
@@ -21,7 +22,15 @@ var quotes = [
     "Alexis Carrel"
   ],
   ["Only the dead have seen the end of war.", "Plato"],
-  ["It is no bad thing celebrating a simple life.", "J. R. R. Tolkien"]
+  ["It is no bad thing celebrating a simple life.", "J. R. R. Tolkien"],
+  [
+    "If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.",
+    "Nikola Tesla"
+  ],
+  [
+    "What is really needed is not to toss back and forth in a bed of agony, but to awaken and get up.",
+    "Julius Evola"
+  ]
 ];
 
 var images = [
@@ -101,8 +110,9 @@ var favorites = [
   [
     "Others",
     [
-      ["hugelol", "http://hugelol.com", "hgl"],
-      ["hiddenlol", "http://hiddenlol.com", "hdl"],
+      ["amazon", "https://www.amazon.com/", "amz"],
+      ["graphic", "https://graphicburger.com/", "gb"],
+      ["gutenberg", "https://www.gutenberg.org/", "pg"],
       ["imgur", "https://imgur.com/", "img"]
     ]
   ]
