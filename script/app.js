@@ -1,7 +1,7 @@
 function init() {
   // Sets background image using backstretch
   $('body').backstretch(
-    'images/' + images[Math.round(Math.random() * (images.length - 1))],
+    `images/backgrounds/${Math.floor(Math.random() * 71)}.jpg`,
     { fade: 300 }
   );
 
