@@ -6,6 +6,13 @@
     Arial, Helvetica, sans-serif;
 }
 
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/backgrounds/7.jpg);
+  object-fit: fill;
+}
+
 ul {
   list-style: none;
 }

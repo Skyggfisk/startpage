@@ -28,11 +28,12 @@
   </head>
 
   <body>
+    <!-- TODO: use more semantic html elements -->
     <div class="content">
       <section class="side-panel col-3">
         <div class="container">
           <div id="logo-card">
-            <div id="logo-text">logo</div>
+            <!-- <div id="logo-text">logo</div> -->
             <div id="logo-image">
               <img src="images\logo.PNG" height="250" width="250" />
             </div>
@@ -46,7 +47,8 @@
             </p>
           </div>
         </div>
-        <div class="container">
+        <!-- TODO: find free weather API or suitable replacement -->
+        <!-- <div class="container">
           <div class="weather-card">
             <p class="weather">
               <span>Weather should be here...</span>
@@ -56,7 +58,7 @@
               <span class="weather-description"></span>
             </p>
           </div>
-        </div>
+        </div> -->
         <div class="container">
           <div id="datetime-card">
             <p class="clock"><span class="time-hours"></span></p>
@@ -66,8 +68,12 @@
       </section>
       <section class="center-panel col-5">
         <div class="container"><div class="quote-card"></div></div>
-        <div class="container"><div id="bookmarks-card"></div></div>
+        <div class="container">
+          <!-- <div class="quote-card"></div> -->
+          <div id="bookmarks-card"></div>
+        </div>
       </section>
+      <!-- TODO: add "refresh" icon/button -->
       <section class="side-panel col-3">
         <div class="container"><div id="rss-card"></div></div>
       </section>
