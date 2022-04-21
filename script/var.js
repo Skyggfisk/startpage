@@ -3,21 +3,15 @@ const user = "Skyggfisk";
 const locations = ["551890"];
 
 const titles = [
-  "Soothing shadows",
-  "Oathbound",
   "Grab a cuppa",
   "Go for a run",
-  "Hey you, check your posture",
+  "Hey you! Check your posture!",
   "Give me 10 push-ups!",
-  "The ride never ends.",
+  "The quest never ends",
 ];
 
 // TODO: replace with norse sayings and mythology
 const quotes = [
-  [
-    "Tradition is not the worship of ashes, but the preservation of fire.",
-    "Gustav Mahler",
-  ],
   [
     "Man cannot remake himself without suffering, for he is both the marble and the sculptor",
     "Alexis Carrel",
@@ -32,6 +26,13 @@ const quotes = [
     "What is really needed is not to toss back and forth in a bed of agony, but to awaken and get up.",
     "Julius Evola",
   ],
+  ["Truth can only be found in one place: the code.", "Robert C. Martin"][
+    ("For the human makers of things, the incompletenesses and inconsistencies of our ideas become clear only during implementation.",
+    "Frederick P. Brooks, Jr.")
+  ][
+    ("You Can't Write Perfect Software. Did that hurt? It shouldn't. Accept it as an axiom of life. Embrace it. Celebrate it. Because perfect software doesn't exist.",
+    "Andrew Hunt")
+  ],
 ];
 
 const feeds = [
@@ -45,11 +46,9 @@ const favorites = [
   [
     "Work",
     [
-      ["gmail", "https://mail.google.com/mail/u/0/#inbox", "gm"],
-      ["hotmail", "https://login.live.com/", "hm"],
+      ["gmail", "https://mail.google.com/", "gm"],
       ["github", "https://github.com/", "gh"],
-      ["bitbucket", "http://bitbucket.org", "bb"],
-      ["calendar", "https://calendar.google.com/calendar/r", "gc"],
+      ["calendar", "https://calendar.google.com/", "gc"],
     ],
   ],
   [
@@ -64,9 +63,10 @@ const favorites = [
   [
     "Music",
     [
+      ["spotify", "https://www.spotify.com/", "spf"][
+        ("soundcloud", "http://www.https://soundcloud.com/", "sc")
+      ],
       ["bandcamp", "https://www.bandcamp.com/", "bc"],
-      ["soundcloud", "http://www.https://soundcloud.com/", "sc"],
-      ["spotify", "https://www.spotify.com/", "spf"],
     ],
   ],
   [
@@ -83,8 +83,6 @@ const favorites = [
     [
       ["tech", "http://boards.4channel.org/g/", "/g/"],
       ["games", "http://boards.4channel.org/v/catalog/", "/v/"],
-      ["gifs", "http://boards.4channel.org/wsg/", "/wsg/"],
-      ["business", "http://boards.4channel.org/biz/catalog", "/biz/"],
     ],
   ],
   [
