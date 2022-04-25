@@ -19,7 +19,6 @@ function init() {
 function initTitle() {
   var r = Math.round(Math.random() * (titles.length - 1));
   $("title").html(titles[r]);
-  // $("#logo-text").html(titles[r]);
 }
 
 // Greet the user
@@ -34,7 +33,6 @@ function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
   $("#rss-card").append(`<div id='0'></div>`);
   feednami.load(feeds[0][1]).then((feed) => {
-    // console.log(feed);
     $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
     for (let entry of feed.entries) {
       let dt = moment(entry.pubDate).format("DD-MM-YYYY");
@@ -56,37 +54,57 @@ function initRss() {
 
 // Grab a random quote and display it
 function initQuote() {
-  var r = Math.round(Math.random() * (quotes.length - 1));
-  var q = quotes[r];
-  $(".quote-card").append(`<p class="quote-text">"${q[0]}"</p>`);
-  $(".quote-card").append(`<p class="quote-author">-${q[1]}</p>`);
+  const r = Math.round(Math.random() * (quotes.length - 1));
+  const { quote, author } = quotes[r];
+  $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
+  $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
 }
 
-// Create a favorite div for each in var.js and display
+/**
+ * Create favorite group elements for each favorite
+ */
 function initBookmarks() {
-  var element = "";
-  $(favorites).each(function (index, group) {
-    element +=
-      "" + '<div class="favorite">' + '<p class="title">' + group[0] + "</p>";
-    "<ul>" +
-      $(group[1]).each(function (index, favorite) {
-        element +=
-          "<li>" +
-          "<span class='short'><a target='_blank' href='" +
-          favorite[1] +
-          "'>" +
-          favorite[2] +
-          "</a></span>" +
-          "<span class='link'><a target='_blank' href='" +
-          favorite[1] +
-          "'>" +
-          favorite[0] +
-          "</a></span>" +
-          "</li>";
-      });
-    element += "" + "</ul>" + "</div>";
-  });
-  $("#bookmarks-card").append(element);
+  const parser = new DOMParser();
+  let favoritesElements = [];
+
+  for (const group of favorites) {
+    const { title, links } = group;
+    let linksElements = [];
+
+    for (const favorite of links) {
+      const { link, shortName, name } = favorite;
+
+      const linksElement = `
+        <li>
+          <span class='short'>
+            <a target='_blank' href="${link}">${shortName}</a>
+          </span>
+          <span class="link">
+            <a target="_blank" href="${link}">${name}</a>
+          </span>
+        </li>
+      `;
+
+      linksElements = [...linksElements, linksElement];
+    }
+
+    const favoritesElement = `
+    <div class="favorite">
+      <p class="title">${title}</p>
+      <ul>${linksElements.join("") /* avoid comma separator */}</ul>
+    </div>
+  `;
+
+    favoritesElements = [...favoritesElements, favoritesElement];
+  }
+
+  console.log(favoritesElements.join(""));
+
+  // const bookmarksCard = document.querySelector("#bookmarks-card");
+  // bookmarksCard.append(
+  //   parser.parseFromString(favoritesElements.join(""), "text/html")
+  // );
+  $("#bookmarks-card").append(favoritesElements);
 }
 
 // jQuery simpleWeather and display it on success, else display error
