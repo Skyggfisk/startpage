@@ -1,10 +1,5 @@
 function init() {
-  // Sets background image using backstretch
-  // $("body").backstretch(
-  //   `images/backgrounds/${Math.floor(Math.random() * 44)}.jpg`,
-  //   { fade: 300 }
-  // );
-
+  $(document).ready(setBackgroundImage);
   // init all the things
   initTitle();
   initQuote();
@@ -13,6 +8,11 @@ function init() {
   initClock();
   // initWeather();
   initRss();
+}
+
+function setBackgroundImage() {
+  const imageNumber = Math.floor(Math.random() * 24);
+  $("body").css("background-image", `url(images/backgrounds/${imageNumber}.webp)`);
 }
 
 // Grab a random title and set it
@@ -38,17 +38,21 @@ function initRss() {
       let dt = moment(entry.pubDate).format("DD-MM-YYYY");
       $("#rss-card #0 #0").append(
         `<li>
-          <div class='itemTitle'>
+          <div class='rss-item-title'>
             <a href='${entry.link}' target='_blank'>${entry.title}</a>
           </div>
-          <div class='itemDate'>${dt}</div>
+          <div class='rss-item-info'>
+            <a href='${entry.comments}' target='_blank'>Comments</a>
+            <div class='rss-spacer'>—</div>
+            <div>${dt}</div>
+          </div>
         </li>`
       );
     }
   });
 
   if ($(window).width() > 768) {
-    $("#rss-card").slimscroll({ height: "800px" });
+    $("#rss-card").slimscroll({ height: "auto", width: "100%" });
   }
 }
 
@@ -64,7 +68,7 @@ function initQuote() {
  * Create favorite group elements for each favorite
  */
 function initBookmarks() {
-  const parser = new DOMParser();
+  // const parser = new DOMParser();
   let favoritesElements = [];
 
   for (const group of favorites) {
@@ -76,9 +80,7 @@ function initBookmarks() {
 
       const linksElement = `
         <li>
-          <span class='short'>
-            <a target='_blank' href="${link}">${shortName}</a>
-          </span>
+          <span class='short'>[${shortName}]</span>
           <span class="link">
             <a target="_blank" href="${link}">${name}</a>
           </span>
@@ -97,8 +99,6 @@ function initBookmarks() {
 
     favoritesElements = [...favoritesElements, favoritesElement];
   }
-
-  console.log(favoritesElements.join(""));
 
   // const bookmarksCard = document.querySelector("#bookmarks-card");
   // bookmarksCard.append(
@@ -128,6 +128,8 @@ function initWeather() {
   });
 }
 
+// TODO: Temporal hype?
+// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal
 // Create the clock, display date and time and greet based on time of day
 function initClock() {
   var today = new Date();

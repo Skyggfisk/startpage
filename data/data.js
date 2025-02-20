@@ -54,6 +54,7 @@ const quotes = [
   },
 ];
 
+// TODO: clean up favorites, 4ch especially is nsfw again :s
 const favorites = [
   {
     title: "Work",
@@ -126,7 +127,7 @@ const favorites = [
       {
         name: "frontpage",
         shortName: "fp",
-        link: "https://www.reddit.com/",
+        link: "https://www.reddit.com/r/all/",
       },
       {
         name: "denmark",
@@ -138,6 +139,11 @@ const favorites = [
         shortName: "wn",
         link: "https://www.reddit.com/r/worldnews",
       },
+      {
+        name: "owls",
+        shortName: "ow",
+        link: "https://www.reddit.com/r/Owls",
+      },
     ],
   },
   {
@@ -146,12 +152,12 @@ const favorites = [
       {
         name: "technology",
         shortName: "/g/",
-        link: "http://boards.4channel.org/g/catalog/",
+        link: "http://boards.4channel.org/g/catalog",
       },
       {
         name: "games",
         shortName: "/v/",
-        link: "http://boards.4channel.org/v/catalog/",
+        link: "http://boards.4channel.org/v/catalog",
       },
     ],
   },
@@ -176,7 +182,12 @@ const favorites = [
       {
         name: "rainy mood",
         shortName: "rm",
-        link: "https://www.gutenberg.org/",
+        link: "https://rainymood.com/",
+      },
+      {
+        name: "chillhop radio",
+        shortName: "ch",
+        link: "https://chillhop.com/radio/",
       },
     ],
   },
