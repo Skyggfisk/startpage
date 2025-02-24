@@ -65,14 +65,14 @@ const favorites = [
         link: "https://mail.google.com/",
       },
       {
-        name: "github",
-        shortName: "gh",
-        link: "https://github.com/",
-      },
-      {
         name: "calendar",
         shortName: "gc",
         link: "https://calendar.google.com/",
+      },
+      {
+        name: "github",
+        shortName: "gh",
+        link: "https://github.com/",
       },
     ],
   },
@@ -85,17 +85,12 @@ const favorites = [
         link: "https://www.facebook.com/",
       },
       {
-        name: "twitter",
-        shortName: "twi",
-        link: "https://www.twitter.com/",
-      },
-      {
         name: "youtube",
         shortName: "yt",
         link: "https://www.youtube.com/",
       },
       {
-        name: "twich",
+        name: "twitch",
         shortName: "ttv",
         link: "https://www.twitch.tv/",
       },
@@ -164,11 +159,6 @@ const favorites = [
   {
     title: "Other",
     links: [
-      {
-        name: "amazon",
-        shortName: "amz",
-        link: "https://www.amazon.com/",
-      },
       {
         name: "graphic burger",
         shortName: "gb",

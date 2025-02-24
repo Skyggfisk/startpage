@@ -17,7 +17,7 @@ function setBackgroundImage() {
 
 // Grab a random title and set it
 function initTitle() {
-  var r = Math.round(Math.random() * (titles.length - 1));
+  const r = Math.round(Math.random() * (titles.length - 1));
   $("title").html(titles[r]);
 }
 
@@ -32,7 +32,9 @@ function initGreetings() {
 function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
   $("#rss-card").append(`<div id='0'></div>`);
+  $("#rss-card #0").append(`<div id='rss-feed-loader'>...</div>`);
   feednami.load(feeds[0][1]).then((feed) => {
+    $("#rss-feed-loader").remove();
     $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
     for (let entry of feed.entries) {
       let dt = moment(entry.pubDate).format("DD-MM-YYYY");
@@ -62,6 +64,13 @@ function initQuote() {
   const { quote, author } = quotes[r];
   $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
   $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
+  $(".quote-card").click(function () {
+    const r = Math.round(Math.random() * (quotes.length - 1));
+    const { quote, author } = quotes[r];
+
+    $(".quote-text").text(`"${quote}"`);
+    $(".quote-author").text(`-${author}`);
+  });
 }
 
 /**
@@ -76,11 +85,10 @@ function initBookmarks() {
     let linksElements = [];
 
     for (const favorite of links) {
-      const { link, shortName, name } = favorite;
+      const { link, name } = favorite;
 
       const linksElement = `
         <li>
-          <span class='short'>[${shortName}]</span>
           <span class="link">
             <a target="_blank" href="${link}">${name}</a>
           </span>

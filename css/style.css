@@ -26,8 +26,11 @@ a:hover {
   text-decoration: underline;
 }
 
+/* TODO: Organise into semantic files or at least sections */
+
 .rss-title {
   font-size: 20px;
+  padding: 10px 0;
 }
 
 .rss-item-title {
@@ -75,9 +78,8 @@ a:hover {
 }
 
 #bookmarks-card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+  display: grid;
+  grid: auto-flow / 1fr 1fr;
 }
 
 #bookmarks-card>.favorite {
@@ -85,12 +87,13 @@ a:hover {
   padding: 10 10px;
   text-align: left;
   margin: auto;
-  width: 200px;
+  width: 100%;
+  height: 100%;
 }
 
-.favorite>li {
-  display: flex;
-  list-style: none;
+/* TODO: Not a fan of the sudden relative unit :thinking: */
+.favorite li {
+  padding: 0 0 0 .5rem;
 }
 
 span.short {
@@ -128,11 +131,20 @@ span.link {
   padding: 3px;
 }
 
+.container-side {
+  max-width: 400px;
+}
+
+.container-right {
+  float: right;
+  min-width: 400px;
+}
+
 [class*="col-"] {
-  justify-content: center;
   width: 98.2%;
 }
 
+/* TODO: Mobile styles are pretty broken */
 /* desktop styling */
 @media only screen and (min-width: 768px) {
   .content {
@@ -140,7 +152,12 @@ span.link {
     justify-content: space-between;
   }
 
+  #bookmarks-card {
+    grid: auto-flow / 1fr 1fr 1fr;
+  }
+
   #bookmarks-card>.favorite {
+    width: auto;
     height: 150px;
   }
 
