@@ -1,12 +1,10 @@
 function init() {
   $(document).ready(setBackgroundImage);
-  // init all the things
   initTitle();
   initQuote();
   initGreetings();
   initBookmarks();
   initClock();
-  // initWeather();
   initRss();
 }
 
@@ -27,7 +25,6 @@ function initGreetings() {
 }
 
 // Create a feed for each in var.js
-// TODO get for each feed in var
 // TODO: cache feed in localStorage
 function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
@@ -37,7 +34,7 @@ function initRss() {
     $("#rss-feed-loader").remove();
     $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
     for (let entry of feed.entries) {
-      let dt = moment(entry.pubDate).format("DD-MM-YYYY");
+      let dt = new Date(entry.pubDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/\//g, "-");
       $("#rss-card #0 #0").append(
         `<li>
           <div class='rss-item-title'>
@@ -73,11 +70,7 @@ function initQuote() {
   });
 }
 
-/**
- * Create favorite group elements for each favorite
- */
 function initBookmarks() {
-  // const parser = new DOMParser();
   let favoritesElements = [];
 
   for (const group of favorites) {
@@ -108,32 +101,7 @@ function initBookmarks() {
     favoritesElements = [...favoritesElements, favoritesElement];
   }
 
-  // const bookmarksCard = document.querySelector("#bookmarks-card");
-  // bookmarksCard.append(
-  //   parser.parseFromString(favoritesElements.join(""), "text/html")
-  // );
   $("#bookmarks-card").append(favoritesElements);
-}
-
-// jQuery simpleWeather and display it on success, else display error
-function initWeather() {
-  $.simpleWeather({
-    zipcode: "",
-    woeid: locations[0],
-    location: "",
-    unit: "c",
-    success: function (weather) {
-      $(".weather-location").html(`${weather.city}, ${weather.region}`);
-      $(".weather-icon").html(`<i class="wi wi-yahoo-${weather.code}"></i>`);
-      $(".weather-temperature").html(
-        `${weather.temp}&deg${weather.units.temp}`
-      );
-      $(".weather-description").html(`${weather.currently}`);
-    },
-    error: function (error) {
-      $(".weather-location").html(`<p>${error}</p>`);
-    },
-  });
 }
 
 // TODO: Temporal hype?
@@ -158,14 +126,6 @@ function initClock() {
 
   $(".time-hours").html(`${h}:${m}:${s}`);
   $(".date-day").html(`${dd}.${mm}.${yyyy}`);
-
-  // if (h < 12) {
-  //   $(".greetings-title").html("good morning");
-  // } else if (h >= 12 && h < 19) {
-  //   $(".greetings-title").html("good afternoon");
-  // } else {
-  //   $(".greetings-title").html("good evening");
-  // }
 
   $(".greetings-title").html(`Good ${timeOfDay},`);
 
