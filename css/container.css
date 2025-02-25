@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    margin: 5px 0;
+    border: solid rgba(250, 235, 215, 0.4) 1px;
+}
+
+.container>div {
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 30px;
+    color: whitesmoke;
+    text-align: center;
+    width: 100%;
+    padding: 3px;
+}
+
+.container-side {
+    max-width: 400px;
+}
+
+.container-right {
+    float: right;
+    min-width: 400px;
+}

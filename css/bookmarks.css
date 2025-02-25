@@ -1,0 +1,31 @@
+#bookmarks-card {
+    display: grid;
+    grid: auto-flow / 1fr 1fr;
+}
+
+#bookmarks-card>.favorite {
+    font-size: 15px;
+    padding: 10 10px;
+    text-align: left;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* TODO: Not a fan of the sudden relative unit :thinking: */
+.favorite li {
+    padding: 0 0 0 .5rem;
+}
+
+span.short {
+    color: antiquewhite;
+    width: 33%;
+}
+
+span.link {
+    width: 66%;
+}
+
+.favorite>p.title {
+    font-size: 20px;
+}

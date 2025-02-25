@@ -1,0 +1,13 @@
+#owl {
+    display: flex;
+    flex-direction: column;
+}
+
+#logo-image {
+    padding: 10px;
+}
+
+#datetime-card {
+    display: flex;
+    justify-content: space-evenly;
+}

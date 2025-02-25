@@ -1,0 +1,24 @@
+.rss-title {
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.rss-item-title {
+    font-size: 15px;
+}
+
+.rss-spacer {
+    padding: 0 5px;
+}
+
+.rss-item-info {
+    font-size: 10px;
+    color: darkgrey;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 10px;
+}
+
+.rss-item-info a {
+    color: darkgrey;
+}

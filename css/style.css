@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: weathericons-regular-webfont, Roboto Light, Verdana, Tahoma,
+  font-family: Roboto Light, Verdana, Tahoma,
     Arial, Helvetica, sans-serif;
 }
 
@@ -26,89 +26,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* TODO: Organise into semantic files or at least sections */
-
-.rss-title {
-  font-size: 20px;
-  padding: 10px 0;
-}
-
-.rss-item-title {
-  font-size: 15px;
-}
-
-.rss-spacer {
-  padding: 0 5px;
-}
-
-.rss-item-info {
-  font-size: 10px;
-  color: darkgrey;
-  display: flex;
-  justify-content: center;
-  padding: 0 0 10px;
-}
-
-.rss-item-info a {
-  color: darkgrey;
-}
-
-.quote-text {
-  padding: 10px 30px 0px;
-}
-
-.quote-author {
-  font-size: 20px;
-  padding: 0 0 10px;
-  color: darkgrey;
-}
-
-#owl {
-  display: flex;
-  flex-direction: column;
-}
-
-#logo-image {
-  padding: 10px;
-}
-
-#datetime-card {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-#bookmarks-card {
-  display: grid;
-  grid: auto-flow / 1fr 1fr;
-}
-
-#bookmarks-card>.favorite {
-  font-size: 15px;
-  padding: 10 10px;
-  text-align: left;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-}
-
-/* TODO: Not a fan of the sudden relative unit :thinking: */
-.favorite li {
-  padding: 0 0 0 .5rem;
-}
-
-span.short {
-  color: antiquewhite;
-  width: 33%;
-}
-
-span.link {
-  width: 66%;
-}
-
-.favorite>p.title {
-  font-size: 20px;
-}
-
 [class*="-panel"] {
   float: left;
   margin: 10 5px;
@@ -116,101 +33,6 @@ span.link {
   height: auto;
 }
 
-.container {
-  display: flex;
-  margin: 5px 0;
-  border: solid rgba(250, 235, 215, 0.4) 1px;
-}
-
-.container>div {
-  background-color: rgba(0, 0, 0, 0.4);
-  font-size: 30px;
-  color: whitesmoke;
-  text-align: center;
-  width: 100%;
-  padding: 3px;
-}
-
-.container-side {
-  max-width: 400px;
-}
-
-.container-right {
-  float: right;
-  min-width: 400px;
-}
-
 [class*="col-"] {
   width: 98.2%;
-}
-
-/* TODO: Mobile styles are pretty broken */
-/* desktop styling */
-@media only screen and (min-width: 768px) {
-  .content {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #bookmarks-card {
-    grid: auto-flow / 1fr 1fr 1fr;
-  }
-
-  #bookmarks-card>.favorite {
-    width: auto;
-    height: 150px;
-  }
-
-  #rss-card {
-    height: 800px;
-    overflow: auto;
-  }
-
-  .col-1 {
-    width: 8.33%;
-  }
-
-  .col-2 {
-    width: 16.66%;
-  }
-
-  .col-3 {
-    width: 25%;
-  }
-
-  .col-4 {
-    width: 33.33%;
-  }
-
-  .col-5 {
-    width: 41.66%;
-  }
-
-  .col-6 {
-    width: 50%;
-  }
-
-  .col-7 {
-    width: 58.33%;
-  }
-
-  .col-8 {
-    width: 66.66%;
-  }
-
-  .col-9 {
-    width: 75%;
-  }
-
-  .col-10 {
-    width: 83.33%;
-  }
-
-  .col-11 {
-    width: 91.66%;
-  }
-
-  .col-12 {
-    width: 100%;
-  }
 }
