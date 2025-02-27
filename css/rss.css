@@ -22,3 +22,35 @@
 .rss-item-info a {
     color: darkgrey;
 }
+
+#rss-feed-loader {
+    position: relative;
+    visibility: hidden;
+}
+
+#rss-feed-loader::before {
+    content: "";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    right: 0;
+    animation: dots 1.5s steps(4) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: "";
+    }
+
+    33% {
+        content: ".";
+    }
+
+    66% {
+        content: "..";
+    }
+
+    100% {
+        content: "...";
+    }
+}

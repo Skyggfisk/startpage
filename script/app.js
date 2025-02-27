@@ -28,8 +28,22 @@ function initGreetings() {
 // TODO: cache feed in localStorage
 function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
+  $(".rss-title").click(loadFeed);
+
+  loadFeed();
+
+  if ($(window).width() > 768) {
+    $("#rss-card").slimscroll({ height: "auto", width: "100%" });
+  }
+}
+
+function loadFeed() {
+  // remove old feed if present
+  $("#0").remove();
+  // re-append id and loader to start animating
   $("#rss-card").append(`<div id='0'></div>`);
   $("#rss-card #0").append(`<div id='rss-feed-loader'>...</div>`);
+
   feednami.load(feeds[0][1]).then((feed) => {
     $("#rss-feed-loader").remove();
     $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
@@ -49,10 +63,6 @@ function initRss() {
       );
     }
   });
-
-  if ($(window).width() > 768) {
-    $("#rss-card").slimscroll({ height: "auto", width: "100%" });
-  }
 }
 
 // Grab a random quote and display it
