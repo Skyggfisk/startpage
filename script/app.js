@@ -117,28 +117,18 @@ function initBookmarks() {
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal
 // Create the clock, display date and time and greet based on time of day
 function initClock() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1;
-  var yyyy = today.getFullYear();
+  const now = new Date();
+  let h = now.getHours();
   const timeOfDay =
     h < 12 ? "morning" : h >= 12 && h < 19 ? "afternoon" : "evening";
 
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
-  if (h < 10) h = "0" + h;
-  if (m < 10) m = "0" + m;
-  if (s < 10) s = "0" + s;
-
-  $(".time-hours").html(`${h}:${m}:${s}`);
-  $(".date-day").html(`${dd}.${mm}.${yyyy}`);
+  $(".time-hours").html(`${now.toLocaleTimeString("en-GB")}`);
+  $(".date-day").html(`${now.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })}`);
 
   $(".greetings-title").html(`Good ${timeOfDay},`);
 
-  var t = setTimeout(initClock, 500);
+  // update every half a second to not miss a second
+  setTimeout(initClock, 500);
 }
 
 $(document).ready(function () {
