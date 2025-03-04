@@ -24,7 +24,6 @@ function initGreetings() {
   $(".greetings .greetings-name").html(user);
 }
 
-// Create a feed for each in var.js
 // TODO: cache feed in localStorage
 function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);

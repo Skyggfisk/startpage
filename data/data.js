@@ -105,6 +105,11 @@ const favorites = [
         link: "https://www.spotify.com/",
       },
       {
+        name: "chillhop radio",
+        shortName: "ch",
+        link: "https://chillhop.com/radio/",
+      },
+      {
         name: "soundcloud",
         shortName: "sc",
         link: "https://www.soundcloud.com/",
@@ -173,11 +178,6 @@ const favorites = [
         name: "rainy mood",
         shortName: "rm",
         link: "https://rainymood.com/",
-      },
-      {
-        name: "chillhop radio",
-        shortName: "ch",
-        link: "https://chillhop.com/radio/",
       },
     ],
   },
