@@ -8,6 +8,7 @@ Currently hosting this page on [skyggfisk.github.io/startpage/](https://skyggfis
 
 ## TODO or ideas
 - [ ] Custom RSS feed reader
+- [ ] A simple JSX-like HTML constructor
 - [ ] Replace slimscroll library
 - [ ] Semantic HTML
 - [ ] Remove JQuery
