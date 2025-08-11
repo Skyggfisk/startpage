@@ -1,16 +1,22 @@
 .container {
+    position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 5px 0;
-    border: solid rgba(250, 235, 215, 0.4) 1px;
-}
-
-.container>div {
-    background-color: rgba(0, 0, 0, 0.4);
+    padding: 3px;
+    width: 100%;
     font-size: 30px;
     color: whitesmoke;
     text-align: center;
-    width: 100%;
-    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: solid rgba(250, 235, 215, 0.4) 1px;
+}
+
+.container:has(.container-controls) {
+    &:hover .container-controls {
+        opacity: 1;
+    }
 }
 
 .container-side {
@@ -20,4 +26,34 @@
 .container-right {
     float: right;
     min-width: 400px;
+    position: relative;
+}
+
+.container-controls {
+    width: auto;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    &>button {
+        background-color: transparent;
+        color: antiquewhite;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        border: none;
+        border-bottom: solid rgba(250, 235, 215, 0.4) 1px;
+        border-left: solid rgba(250, 235, 215, 0.4) 1px;
+    }
+
+    &>button:hover {
+        color: whitesmoke;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
 }

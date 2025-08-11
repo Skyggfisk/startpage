@@ -27,70 +27,64 @@ function initGreetings() {
 // TODO: cache feed in localStorage
 function initRss() {
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
-  $(".rss-title").click(rssFeed);
+  // $(".rss-title").click(rssFeed);
 
   rssFeed();
 
-  if ($(window).width() > 768) {
-    $("#rss-card").slimscroll({ height: "auto", width: "100%" });
-  }
-}
-
-// TODO: move to own file and import in script tag
-async function rssFeed() {
-  // remove old feed if present
-  $("#0").remove();
-  // re-append id and loader to start animating
-  $("#rss-card").append(`<div id='0'></div>`);
-  $("#rss-card #0").append(`<div id='rss-feed-loader'>...</div>`);
-
-  // jquery-plugins' feed proxy
-  // @see https://jquery-plugins.net/feed-api#/Feed/get_load
-  const PROXY_URL = "https://feed.jquery-plugins.net/load";
-  const RSS_URL = "https://news.ycombinator.com/rss";
-  const MAX_COUNT = 30;
-  const DATE_CULTURE = "en-GB";
-  const DATE_FORMAT = "dd-MM-yyyy";
-  const OFFSET = 0;
-
-  const params = new URLSearchParams();
-  params.append("url", RSS_URL);
-  params.append("maxCount", MAX_COUNT);
-  const FEED_URL = new URL(PROXY_URL);
-  FEED_URL.search = params.toString();
-
-  try {
-    const res = await fetch(FEED_URL);
-
-    if (!res.ok) {
-      throw new Error(`Response status: ${res.status}`);
+  // if ($(window).width() > 768) {
+  //   $("#rss-card").slimscroll({ height: "auto", width: "100%" });
+  // }
+  if (isOverflown(document.querySelector("#rss-card"))) {
+    document.querySelector("#rss-scrollbar")?.remove();
+  } else {
+    if (document.querySelector("#rss-scrollbar") === undefined) {
+      document.querySelector(".container-right").appendChild(`
+        <div id="rss-scrollbar">
+          <div id="rss-scrollbar-thumb"></div>
+        </div>
+        `);
     }
 
-    const feed = await res.json();
+    // querySelector, we eventually want to get rid of jQuery
+    const thumb = document.querySelector("#rss-scrollbar-thumb");
+    const scrollbar = document.querySelector("#rss-scrollbar");
+    const scrollContainer = document.querySelector("#rss-card");
 
-    $("#rss-feed-loader").remove();
-    $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
+    // keep track, and share state between event listeners
+    let isDragging = false;
+    let startY;
+    let startThumbTop;
 
-    for (let entry of feed.data) {
-      const dt = new Date(entry.publishDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/\//g, "-");
-      const commentsHref = entry.description.match(/href="([^"]*)"/)[1];
-      $("#rss-card #0 #0").append(
-        `<li>
-          <div class='rss-item-title'>
-            <a href='${entry.link}' target='_blank'>${entry.title}</a>
-          </div>
-          <div class='rss-item-info'>
-            <a href='${commentsHref}' target='_blank'>Comments</a>
-            <div class='rss-spacer'>—</div>
-            <div>${dt}</div>
-          </div>
-        </li>`
-      )
-    };
 
-  } catch (e) {
-    console.error(e.message);
+    thumb.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startY = e.clientY;
+      startThumbTop = thumb.offsetTop;
+      document.body.style.userSelect = "none";
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      document.body.style.userSelect = "";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const deltaY = e.clientY - startY;
+      const newTop = Math.min(
+        Math.max(startThumbTop + deltaY, 0),
+        scrollbar.offsetHeight - thumb.offsetHeight
+      );
+      thumb.style.top = `${newTop}px`; // TODO: Also move thumb with wheel scroll
+
+      const scrollPercent = newTop / (scrollbar.offsetHeight - thumb.offsetHeight);
+      scrollContainer.scrollTop = scrollPercent * (scrollContainer.scrollHeight - scrollContainer.offsetHeight);
+    });
   }
+};
+
+function isOverflown(el) {
+  return el.scrollHeight >= el.clientHeight;
 }
 
 // Grab a random quote and display it
@@ -131,7 +125,12 @@ function initBookmarks() {
 
     const favoritesElement = `
     <div class="favorite">
-      <p class="title">${title}</p>
+      <div class="favorite-header">
+        <p class="title">${title}</p>
+        <div class="favorite-controls">
+          <button class="favorite-controls-edit-button" title="edit group">✎</button>
+        </div>
+      </div>
       <ul>${linksElements.join("") /* avoid comma separator */}</ul>
     </div>
   `;
@@ -140,6 +139,26 @@ function initBookmarks() {
   }
 
   $("#bookmarks-card").append(favoritesElements);
+
+  // TODO: add a drafting element for new bookmarks, set a temp name and save new group
+  // on 'enter', if draft input blurs with no input value, remove draft and do not save
+  // the new group.
+  // Easier alternative add an editing modal, create a placeholder and update the whole thing in one go.
+  // Require using delete button in editing modal to remove the group.
+  $("#bookmarks-add-button").click(function () {
+    $("#bookmarks-card").append(`
+    <div class="favorite">
+      <p class="title">New group</p>
+      <ul>
+        <li>
+          <span class="link">
+            <a target="_blank" href="#">New link</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+    `)
+  });
 }
 
 // TODO: Temporal hype?

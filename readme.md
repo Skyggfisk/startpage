@@ -7,7 +7,7 @@ Idea originally from 4chan's technology board /g/, in /wdg/ web development gene
 Currently hosting this page on [skyggfisk.github.io/startpage/](https://skyggfisk.github.io/startpage/).
 
 ## TODO or ideas
-- [ ] Custom RSS feed reader
+- [x] Custom RSS feed reader
 - [ ] A simple JSX-like HTML constructor
 - [ ] Replace slimscroll library
 - [ ] Semantic HTML
@@ -21,3 +21,4 @@ Currently hosting this page on [skyggfisk.github.io/startpage/](https://skyggfis
     - [ ] eBook browser + reader
 - [ ] Offline + PWA support
 - [ ] Mobile layout / responsive design
+- [ ] Robust cross-browser support
