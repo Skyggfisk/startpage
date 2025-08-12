@@ -56,3 +56,31 @@
         background-color: rgba(0, 0, 0, 0.2);
     }
 }
+
+.controls-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    max-width: 400px;
+
+    &>button {
+        transition: background-color 0.2s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: antiquewhite;
+        width: 60px;
+        height: 40px;
+        font-size: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        padding: 0;
+        margin: 0 5px;
+        border: solid rgba(250, 235, 215, 0.4) 1px;
+    }
+
+    &>button:hover {
+        color: whitesmoke;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
