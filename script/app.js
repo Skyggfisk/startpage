@@ -35,7 +35,7 @@ function initGreetings() {
 function initRss() {
   const feeds = getStorageItem("feeds");
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
-  // $(".rss-title").click(rssFeed);
+  $(".rss-title").click(refreshFeed);
 
   rssFeed();
 
