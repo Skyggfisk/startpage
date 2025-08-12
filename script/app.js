@@ -9,15 +9,19 @@ function init() {
   initRss();
 }
 
+function randomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function setBackgroundImage() {
-  const imageNumber = Math.floor(Math.random() * 23);
+  const imageNumber = randomInt(23);
   $("body").css("background-image", `url(images/backgrounds/${imageNumber}.webp)`);
 }
 
 // Grab a random title and set it
 function initTitle() {
   const titles = getStorageItem("titles");
-  const r = Math.round(Math.random() * (titles.length - 1));
+  const r = randomInt(titles.length);
   $("title").html(titles[r]);
 }
 
@@ -94,12 +98,12 @@ function isOverflown(el) {
 // Grab a random quote and display it
 function initQuote() {
   const quotes = getStorageItem("quotes");
-  const r = Math.round(Math.random() * (quotes.length - 1));
+  const r = randomInt(quotes.length);
   const { quote, author } = quotes[r];
   $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
   $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
   $(".quote-card").click(function () {
-    const r = Math.round(Math.random() * (quotes.length - 1));
+    const r = randomInt(quotes.length);
     const { quote, author } = quotes[r];
 
     $(".quote-text").text(`"${quote}"`);
