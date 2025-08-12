@@ -1,5 +1,6 @@
 function init() {
   $(document).ready(setBackgroundImage);
+  initStorage();
   initTitle();
   initQuote();
   initGreetings();
@@ -15,17 +16,20 @@ function setBackgroundImage() {
 
 // Grab a random title and set it
 function initTitle() {
+  const titles = getStorageItem("titles");
   const r = Math.round(Math.random() * (titles.length - 1));
   $("title").html(titles[r]);
 }
 
 // Greet the user
 function initGreetings() {
+  const user = getStorageItem("user");
   $(".greetings .greetings-name").html(user);
 }
 
 // TODO: cache feed in localStorage
 function initRss() {
+  const feeds = getStorageItem("feeds");
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
   // $(".rss-title").click(rssFeed);
 
@@ -89,6 +93,7 @@ function isOverflown(el) {
 
 // Grab a random quote and display it
 function initQuote() {
+  const quotes = getStorageItem("quotes");
   const r = Math.round(Math.random() * (quotes.length - 1));
   const { quote, author } = quotes[r];
   $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
@@ -104,6 +109,7 @@ function initQuote() {
 
 function initBookmarks() {
   let favoritesElements = [];
+  const favorites = getAllFavorites();
 
   for (const group of favorites) {
     const { title, links } = group;
