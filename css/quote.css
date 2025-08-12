@@ -1,5 +1,6 @@
 .quote-text {
     padding: 10px 30px 0px;
+    cursor: pointer;
 }
 
 .quote-author {

@@ -21,12 +21,11 @@
 
 .container-side {
     max-width: 400px;
+    align-self: center;
 }
 
 .container-right {
-    float: right;
     min-width: 400px;
-    position: relative;
 }
 
 .container-controls {
