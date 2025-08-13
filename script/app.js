@@ -31,7 +31,6 @@ function initGreetings() {
   $(".greetings .greetings-name").html(user);
 }
 
-// TODO: cache feed in localStorage
 function initRss() {
   const feeds = getStorageItem("feeds");
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);

@@ -43,6 +43,10 @@
 
 .rss-item-title {
     font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 350px;
 }
 
 .rss-spacer {

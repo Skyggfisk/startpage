@@ -86,7 +86,7 @@ async function rssFeed() {
       $("#rss-card #0 #0").append(
         `<li>
             <div class='rss-item-title'>
-              <a href='${entry.link}' target='_blank'>${entry.title}</a>
+              <a title="${entry.title}" href='${entry.link}' target='_blank'>${entry.title}</a>
             </div>
             <div class='rss-item-info'>
               <a href='${commentsHref}' target='_blank'>Comments</a>
