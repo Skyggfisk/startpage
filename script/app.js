@@ -37,62 +37,7 @@ function initRss() {
   $(".rss-title").click(refreshFeed);
 
   rssFeed();
-
-  // if ($(window).width() > 768) {
-  //   $("#rss-card").slimscroll({ height: "auto", width: "100%" });
-  // }
-  if (isOverflown(document.querySelector("#rss-card"))) {
-    document.querySelector("#rss-scrollbar")?.remove();
-  } else {
-    if (document.querySelector("#rss-scrollbar") === undefined) {
-      document.querySelector(".container-right").appendChild(`
-        <div id="rss-scrollbar">
-          <div id="rss-scrollbar-thumb"></div>
-        </div>
-        `);
-    }
-
-    // querySelector, we eventually want to get rid of jQuery
-    const thumb = document.querySelector("#rss-scrollbar-thumb");
-    const scrollbar = document.querySelector("#rss-scrollbar");
-    const scrollContainer = document.querySelector("#rss-card");
-
-    // keep track, and share state between event listeners
-    let isDragging = false;
-    let startY;
-    let startThumbTop;
-
-
-    thumb.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      startY = e.clientY;
-      startThumbTop = thumb.offsetTop;
-      document.body.style.userSelect = "none";
-    });
-
-    document.addEventListener("mouseup", () => {
-      isDragging = false;
-      document.body.style.userSelect = "";
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      const deltaY = e.clientY - startY;
-      const newTop = Math.min(
-        Math.max(startThumbTop + deltaY, 0),
-        scrollbar.offsetHeight - thumb.offsetHeight
-      );
-      thumb.style.top = `${newTop}px`; // TODO: Also move thumb with wheel scroll
-
-      const scrollPercent = newTop / (scrollbar.offsetHeight - thumb.offsetHeight);
-      scrollContainer.scrollTop = scrollPercent * (scrollContainer.scrollHeight - scrollContainer.offsetHeight);
-    });
-  }
 };
-
-function isOverflown(el) {
-  return el.scrollHeight >= el.clientHeight;
-}
 
 // Grab a random quote and display it
 function initQuote() {

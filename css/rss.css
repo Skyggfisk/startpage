@@ -1,13 +1,13 @@
-/* Trying to replace jquery slimscroll */
-/* @see https://github.com/rochal/jQuery-slimScroll/blob/master/jquery.slimscroll.js */
-
 #rss-card::-webkit-scrollbar {
     display: none;
 }
 
 #rss-card {
-    overflow: auto;
+    position: relative;
+    overflow-y: auto;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
 }
 
 #rss-scrollbar {
@@ -15,24 +15,27 @@
     top: 0;
     right: 0;
     height: 100%;
-    width: 20px;
-    background-color: red;
-    margin: 0;
-    padding: 1px;
+    width: 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
 }
 
 .container-right:hover #rss-scrollbar {
-    background-color: blue;
+    opacity: 1;
+}
+
+#rss-scrollbar.dragging {
+    opacity: 1;
 }
 
 #rss-scrollbar-thumb {
-    background-color: black;
-    width: 18px;
-    /*TODO: indicate scroll size; small when a lot to scroll, larger when little */
-    height: 10%;
-    border-radius: 15%;
     cursor: pointer;
-    position: relative;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 .rss-title {
