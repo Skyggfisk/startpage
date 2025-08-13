@@ -14,7 +14,7 @@ function randomInt(max) {
 }
 
 function setBackgroundImage() {
-  const imageNumber = randomInt(23);
+  const imageNumber = randomInt(3);
   $("body").css("background-image", `url(images/backgrounds/${imageNumber}.webp)`);
 }
 
