@@ -1,4 +1,5 @@
 #bookmarks-card {
+    width: 100%;
     display: grid;
     grid: auto-flow / 1fr 1fr;
 }
@@ -28,4 +29,38 @@ span.link {
 
 .favorite>p.title {
     font-size: 20px;
+}
+
+.favorite-header {
+    display: flex;
+}
+
+.favorite-controls {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    margin-left: 0.3rem;
+}
+
+.favorite:hover .favorite-controls {
+    /* TODO: Keep hidden for now */
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+
+.favorite-controls-edit-button {
+    background-color: transparent;
+    color: rgba(250, 235, 215, 0.4);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+}
+
+.favorite-controls-edit-button:hover {
+    color: whitesmoke;
 }

@@ -6,6 +6,13 @@
     Arial, Helvetica, sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: rgba(0, 0, 0, 0.4);
   background-size: cover;
@@ -27,10 +34,12 @@ a:hover {
 }
 
 [class*="-panel"] {
-  float: left;
   margin: 10 5px;
   min-height: 1px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 [class*="col-"] {

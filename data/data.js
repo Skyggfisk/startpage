@@ -1,8 +1,8 @@
-const user = "Skyggfisk";
+const default_user = "Skyggfisk";
 
-const locations = ["551890"];
+const default_locations = ["551890"];
 
-const titles = [
+const default_titles = [
   "Grab a cuppa",
   "Go for a run",
   "Hey you! Check your posture!",
@@ -10,19 +10,13 @@ const titles = [
   "The quest never ends",
 ];
 
-// const feeds = [
-//   { title: "Hacker news", source: "https://news.ycombinator.com/rss" },
-//   { title: "Version2", source: "https://www.version2.dk/it-nyheder/rss" },
-//   { title: "tv2", source: "https://feeds.tv2.dk/nyhederne_seneste/rss" },
-// ];
-
-const feeds = [
+const default_feeds = [
   ["Hacker news", "https://news.ycombinator.com/rss"],
   ["Version2", "https://www.version2.dk/it-nyheder/rss"],
   ["tv2", "https://feeds.tv2.dk/nyhederne_seneste/rss"],
 ];
 
-const quotes = [
+const default_quotes = [
   {
     quote:
       "Man cannot remake himself without suffering, for he is both the marble and the sculptor",
@@ -55,7 +49,7 @@ const quotes = [
 ];
 
 // TODO: clean up favorites, 4ch especially is nsfw again :s
-const favorites = [
+const default_favorites = [
   {
     title: "Work",
     links: [

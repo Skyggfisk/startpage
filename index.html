@@ -18,17 +18,20 @@
   <link rel="stylesheet" href="css/desktop-styles.css" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="script/jquery.slimscroll.min.js"></script>
 </head>
 
 <body>
   <!-- TODO: use more semantic html elements -->
   <div class="content">
+    <!-- TODO: create configuration-settings modal; import/export config file  -->
+    <!-- TODO: create todo list widget  -->
+    <!-- TODO: create weather widget; need weather API  -->
+    <!-- TODO: create calendar widget; API?  -->
+    <!-- TODO: create stock brief widget; API? -->
     <!-- TODO: add icons for morning, noon, afternoon, and evening + bonus early morning/late night -->
     <!-- TODO: add icons for date (calendar), time (clock)? -->
     <section class="side-panel col-3">
       <div class="container container-side">
-
         <div id="owl">
           <div id="datetime-card">
             <p class="clock"><span class="time-hours"></span></p>
@@ -47,22 +50,16 @@
               <span class="greetings-name"></span>
             </p>
           </div>
-
-          <!-- TODO: find free weather API or suitable replacement -->
-          <!-- <div class="container">
-            <div class="weather-card">
-              <p class="weather">
-                <span>Weather should be here...</span>
-                <span class="weather-location"></span><br />
-                <span class="weather-icon"></span>
-                <span class="weather-temperature"></span><br />
-                <span class="weather-description"></span>
-              </p>
-            </div>
-          </div> -->
         </div>
-
       </div>
+
+      <!-- TODO: Settings and controls -->
+      <!-- <div class="controls-container">
+        <button id="refresh" class="controls-button" title="Refresh all content">↻</button>
+        <button id="theme" class="controls-button" title="Toggle theme">☀</button>
+        <button id="settings" class="controls-button" title="Settings">⚙</button>
+      </div> -->
+
     </section>
     <section class="center-panel col-5">
       <div class="container">
@@ -70,6 +67,12 @@
       </div>
       <div class="container">
         <div id="bookmarks-card"></div>
+        <!-- TODO: Widget controls -->
+        <!-- <div class="container-controls">
+          <button id="bookmarks-add-button" class="container-controls-add-button"
+            title="add new bookmarks and groups">+</button>
+          <button id="bookmarks-info-button" class="container-controls-info-button" title="bookmark links">?</button>
+        </div> -->
       </div>
     </section>
     <!-- TODO: add "refresh" icon/button -->
@@ -82,6 +85,8 @@
   </div>
 </body>
 <script src="data/data.js"></script>
+<script src="data/storage.js"></script>
+<script src="script/feedReader.js"></script>
 <script src="script/app.js"></script>
 
 </html>

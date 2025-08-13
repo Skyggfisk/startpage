@@ -3,7 +3,7 @@
 @media only screen and (min-width: 768px) {
     .content {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
 
     #bookmarks-card {
@@ -17,7 +17,6 @@
 
     #rss-card {
         height: 800px;
-        overflow: auto;
     }
 
     .col-1 {

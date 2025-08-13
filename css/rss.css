@@ -1,10 +1,55 @@
+#rss-card::-webkit-scrollbar {
+    display: none;
+}
+
+#rss-card {
+    position: relative;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
+}
+
+#rss-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.container-right:hover #rss-scrollbar {
+    opacity: 1;
+}
+
+#rss-scrollbar.dragging {
+    opacity: 1;
+}
+
+#rss-scrollbar-thumb {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
 .rss-title {
     font-size: 20px;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .rss-item-title {
     font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 350px;
 }
 
 .rss-spacer {

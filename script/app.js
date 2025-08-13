@@ -1,5 +1,6 @@
 function init() {
   $(document).ready(setBackgroundImage);
+  initStorage();
   initTitle();
   initQuote();
   initGreetings();
@@ -8,99 +9,45 @@ function init() {
   initRss();
 }
 
+function randomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function setBackgroundImage() {
-  const imageNumber = Math.floor(Math.random() * 23);
+  const imageNumber = randomInt(3);
   $("body").css("background-image", `url(images/backgrounds/${imageNumber}.webp)`);
 }
 
 // Grab a random title and set it
 function initTitle() {
-  const r = Math.round(Math.random() * (titles.length - 1));
+  const titles = getStorageItem("titles");
+  const r = randomInt(titles.length);
   $("title").html(titles[r]);
 }
 
 // Greet the user
 function initGreetings() {
+  const user = getStorageItem("user");
   $(".greetings .greetings-name").html(user);
 }
 
-// TODO: cache feed in localStorage
 function initRss() {
+  const feeds = getStorageItem("feeds");
   $("#rss-card").append(`<p class='rss-title'>${feeds[0][0]}</p>`);
-  $(".rss-title").click(rssFeed);
+  $(".rss-title").click(refreshFeed);
 
   rssFeed();
-
-  if ($(window).width() > 768) {
-    $("#rss-card").slimscroll({ height: "auto", width: "100%" });
-  }
-}
-
-// TODO: move to own file and import in script tag
-async function rssFeed() {
-  // remove old feed if present
-  $("#0").remove();
-  // re-append id and loader to start animating
-  $("#rss-card").append(`<div id='0'></div>`);
-  $("#rss-card #0").append(`<div id='rss-feed-loader'>...</div>`);
-
-  // jquery-plugins' feed proxy
-  // @see https://jquery-plugins.net/feed-api#/Feed/get_load
-  const PROXY_URL = "https://feed.jquery-plugins.net/load";
-  const RSS_URL = "https://news.ycombinator.com/rss";
-  const MAX_COUNT = 30;
-  const DATE_CULTURE = "en-GB";
-  const DATE_FORMAT = "dd-MM-yyyy";
-  const OFFSET = 0;
-
-  const params = new URLSearchParams();
-  params.append("url", RSS_URL);
-  params.append("maxCount", MAX_COUNT);
-  const FEED_URL = new URL(PROXY_URL);
-  FEED_URL.search = params.toString();
-
-  try {
-    const res = await fetch(FEED_URL);
-
-    if (!res.ok) {
-      throw new Error(`Response status: ${res.status}`);
-    }
-
-    const feed = await res.json();
-
-    $("#rss-feed-loader").remove();
-    $("#rss-card #0").append('<ul class="feedEkList" id="0"></ul>');
-
-    for (let entry of feed.data) {
-      const dt = new Date(entry.publishDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/\//g, "-");
-      const commentsHref = entry.description.match(/href="([^"]*)"/)[1];
-      $("#rss-card #0 #0").append(
-        `<li>
-          <div class='rss-item-title'>
-            <a href='${entry.link}' target='_blank'>${entry.title}</a>
-          </div>
-          <div class='rss-item-info'>
-            <a href='${commentsHref}' target='_blank'>Comments</a>
-            <div class='rss-spacer'>—</div>
-            <div>${dt}</div>
-          </div>
-        </li>`
-      )
-    };
-
-  } catch (e) {
-    console.error(e.message);
-  }
-}
+};
 
 // Grab a random quote and display it
 function initQuote() {
-  const r = Math.round(Math.random() * (quotes.length - 1));
+  const quotes = getStorageItem("quotes");
+  const r = randomInt(quotes.length);
   const { quote, author } = quotes[r];
   $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
   $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
   $(".quote-card").click(function () {
-    const r = Math.round(Math.random() * (quotes.length - 1));
+    const r = randomInt(quotes.length);
     const { quote, author } = quotes[r];
 
     $(".quote-text").text(`"${quote}"`);
@@ -110,6 +57,7 @@ function initQuote() {
 
 function initBookmarks() {
   let favoritesElements = [];
+  const favorites = getAllFavorites();
 
   for (const group of favorites) {
     const { title, links } = group;
@@ -131,7 +79,12 @@ function initBookmarks() {
 
     const favoritesElement = `
     <div class="favorite">
-      <p class="title">${title}</p>
+      <div class="favorite-header">
+        <p class="title">${title}</p>
+        <div class="favorite-controls">
+          <button class="favorite-controls-edit-button" title="edit group">✎</button>
+        </div>
+      </div>
       <ul>${linksElements.join("") /* avoid comma separator */}</ul>
     </div>
   `;
@@ -140,6 +93,26 @@ function initBookmarks() {
   }
 
   $("#bookmarks-card").append(favoritesElements);
+
+  // TODO: add a drafting element for new bookmarks, set a temp name and save new group
+  // on 'enter', if draft input blurs with no input value, remove draft and do not save
+  // the new group.
+  // Easier alternative add an editing modal, create a placeholder and update the whole thing in one go.
+  // Require using delete button in editing modal to remove the group.
+  // $("#bookmarks-add-button").click(function () {
+  //   $("#bookmarks-card").append(`
+  //   <div class="favorite">
+  //     <p class="title">New group</p>
+  //     <ul>
+  //       <li>
+  //         <span class="link">
+  //           <a target="_blank" href="#">New link</a>
+  //         </span>
+  //       </li>
+  //     </ul>
+  //   </div>
+  //   `)
+  // });
 }
 
 // TODO: Temporal hype?
