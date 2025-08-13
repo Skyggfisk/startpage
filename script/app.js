@@ -99,20 +99,20 @@ function initBookmarks() {
   // the new group.
   // Easier alternative add an editing modal, create a placeholder and update the whole thing in one go.
   // Require using delete button in editing modal to remove the group.
-  $("#bookmarks-add-button").click(function () {
-    $("#bookmarks-card").append(`
-    <div class="favorite">
-      <p class="title">New group</p>
-      <ul>
-        <li>
-          <span class="link">
-            <a target="_blank" href="#">New link</a>
-          </span>
-        </li>
-      </ul>
-    </div>
-    `)
-  });
+  // $("#bookmarks-add-button").click(function () {
+  //   $("#bookmarks-card").append(`
+  //   <div class="favorite">
+  //     <p class="title">New group</p>
+  //     <ul>
+  //       <li>
+  //         <span class="link">
+  //           <a target="_blank" href="#">New link</a>
+  //         </span>
+  //       </li>
+  //     </ul>
+  //   </div>
+  //   `)
+  // });
 }
 
 // TODO: Temporal hype?

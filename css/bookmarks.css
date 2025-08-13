@@ -43,7 +43,10 @@ span.link {
 }
 
 .favorite:hover .favorite-controls {
-    opacity: 1;
+    /* TODO: Keep hidden for now */
+    opacity: 0;
+    visibility: hidden;
+    display: none;
 }
 
 .favorite-controls-edit-button {
