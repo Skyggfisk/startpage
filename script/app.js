@@ -1,6 +1,7 @@
 function init() {
   $(document).ready(setBackgroundImage);
   initStorage();
+  initWeather();
   initTitle();
   initQuote();
   initGreetings();
@@ -131,6 +132,11 @@ function initClock() {
 
   // update every half a second to not miss a second
   setTimeout(initClock, 500);
+}
+
+function initWeather() {
+  fetchWeather();
+  $("#weather-refresh-button").click(refreshWeather);
 }
 
 $(document).ready(function () {

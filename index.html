@@ -15,7 +15,10 @@
   <link rel="stylesheet" href="css/quote.css" />
   <link rel="stylesheet" href="css/bookmarks.css" />
   <link rel="stylesheet" href="css/rss.css" />
+  <link rel="stylesheet" href="css/weather.css" />
   <link rel="stylesheet" href="css/desktop-styles.css" />
+  <link rel="stylesheet" href="css/weather-icons.min.css" />
+  <link rel="stylesheet" href="css/modal.css" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -49,6 +52,37 @@
               <span class="greetings-title"></span>
               <span class="greetings-name"></span>
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container container-side">
+        <div class="container-controls">
+          <button id="weather-refresh-button" title="refresh weather data">↻</button>
+          <button id="weather-settings-button" title="weather settings">⚙</button>
+        </div>
+        <div id="weather-card"></div>
+      </div>
+
+      <!-- Weather Settings Modal -->
+      <div id="weather-settings-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Weather Settings</h3>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="latitude">Latitude:</label>
+              <input type="number" id="latitude" step="0.000001" placeholder="Enter latitude">
+            </div>
+            <div class="form-group">
+              <label for="longitude">Longitude:</label>
+              <input type="number" id="longitude" step="0.000001" placeholder="Enter longitude">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="weather-settings-apply">Apply</button>
           </div>
         </div>
       </div>
@@ -87,6 +121,7 @@
 <script src="data/data.js"></script>
 <script src="data/storage.js"></script>
 <script src="script/feedReader.js"></script>
+<script src="script/fetchWeather.js"></script>
 <script src="script/app.js"></script>
 
 </html>
