@@ -73,25 +73,30 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label for="location-search">Search location:</label>
-              <input type="text" id="location-search" placeholder="Enter city name">
-              <div id="location-results"></div>
+              <div class="form-subgroup">
+                <label for="location-search">Search location:</label>
+                <input type="text" id="location-search" placeholder="Enter city name">
+                <div id="location-results"></div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="wind-speed-unit">Wind Speed Unit:</label>
-              <select id="wind-speed-unit">
-                <option value="ms">m/s</option>
-                <option value="kmh">km/h</option>
-                <option value="mph">mph</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="temperature-unit">Temperature Unit:</label>
-              <select id="temperature-unit">
-                <option value="celsius">°C</option>
-                <option value="fahrenheit">°F</option>
-              </select>
-            </div>
+            <fieldset class="form-group">
+              <legend>Units</legend>
+              <div class="form-subgroup">
+                <label for="wind-speed-unit">Wind Speed:</label>
+                <select id="wind-speed-unit">
+                  <option value="ms">m/s</option>
+                  <option value="kmh">km/h</option>
+                  <option value="mph">mph</option>
+                </select>
+              </div>
+              <div class="form-subgroup">
+                <label for="temperature-unit">Temperature:</label>
+                <select id="temperature-unit">
+                  <option value="celsius">°C</option>
+                  <option value="fahrenheit">°F</option>
+                </select>
+              </div>
+            </fieldset>
           </div>
           <div class="modal-footer">
             <button id="weather-settings-apply">Apply</button>

@@ -59,7 +59,23 @@
 }
 
 .form-group {
+    display: flex;
+    column-gap: 18px;
     margin-bottom: 12px;
+}
+
+fieldset.form-group {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+}
+
+fieldset.form-group legend {
+    color: darkgrey;
+    font-size: 12px;
+}
+
+.form-subgroup {
+    flex: 1;
 }
 
 .form-group label {
