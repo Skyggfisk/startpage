@@ -176,3 +176,17 @@ const default_favorites = [
     ],
   },
 ];
+
+const default_weather_config = {
+  location: {
+    name: 'Aarhus',
+    country: 'Denmark',
+    admin1: 'Central Jutland',
+    coords: {
+      lat: 56.1567,
+      lon: 10.2108
+    }
+  },
+  windSpeedUnit: 'ms',
+  temperatureUnit: 'celsius'
+};

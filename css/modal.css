@@ -37,7 +37,7 @@
     font-weight: normal;
 }
 
-.modal-close {
+#weather-settings-close {
     background: none;
     border: none;
     color: antiquewhite;
@@ -48,7 +48,7 @@
     opacity: 0.8;
 }
 
-.modal-close:hover {
+#weather-settings-close:hover {
     color: whitesmoke;
     opacity: 1;
 }
@@ -129,4 +129,26 @@
 #weather-settings-apply:hover {
     color: whitesmoke;
     background: rgba(255, 255, 255, 0.2);
+}
+
+#location-results {
+    position: absolute;
+    color: whitesmoke;
+    font-size: 13px;
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid #666;
+    max-height: 200px;
+    overflow-y: auto;
+    width: calc(100% - 20px);
+    z-index: 1001;
+    display: none;
+}
+
+#location-results div {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#location-results div:hover {
+    background: rgba(80, 80, 80, 0.95);
 }

@@ -69,16 +69,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3>Weather Settings</h3>
-            <button class="modal-close">&times;</button>
+            <button id="weather-settings-close">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label for="latitude">Latitude:</label>
-              <input type="number" id="latitude" step="0.000001" placeholder="Enter latitude">
-            </div>
-            <div class="form-group">
-              <label for="longitude">Longitude:</label>
-              <input type="number" id="longitude" step="0.000001" placeholder="Enter longitude">
+              <label for="location-search">Search location:</label>
+              <input type="text" id="location-search" placeholder="Enter city name">
+              <div id="location-results"></div>
             </div>
             <div class="form-group">
               <label for="wind-speed-unit">Wind Speed Unit:</label>

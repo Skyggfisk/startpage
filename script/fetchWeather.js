@@ -1,34 +1,90 @@
-// Weather settings modal functionality
+// weather settings modal     
 $(document).ready(function () {
     const modal = $('#weather-settings-modal');
     const settingsBtn = $('#weather-settings-button');
-    const closeBtn = $('.modal-close');
+    const closeBtn = $('#weather-settings-close');
     const applyBtn = $('#weather-settings-apply');
-
-    const defaultSettings = {
-        lat: 56.1567,
-        lon: 10.2108,
-        windSpeedUnit: 'ms',
-        temperatureUnit: 'celsius'
-    };
+    const locationSearch = $('#location-search');
+    const locationResults = $('#location-results');
+    const windSpeedUnitSelect = $('#wind-speed-unit');
+    const temperatureUnitSelect = $('#temperature-unit');
 
     // load existing settings
     function loadSettings() {
-        const settings = localStorage.getItem('weather_config');
-        if (settings) {
-            const { lat, lon, windSpeedUnit, temperatureUnit } = JSON.parse(settings);
-            $('#latitude').val(lat);
-            $('#longitude').val(lon);
-            $('#wind-speed-unit').val(windSpeedUnit || defaultSettings.windSpeedUnit);
-            $('#temperature-unit').val(temperatureUnit || defaultSettings.temperatureUnit);
-        } else {
-            // set default values if no settings exist
-            $('#latitude').val(defaultSettings.lat);
-            $('#longitude').val(defaultSettings.lon);
-            $('#wind-speed-unit').val(defaultSettings.windSpeedUnit);
-            $('#temperature-unit').val(defaultSettings.temperatureUnit);
+        const weatherConfig = localStorage.getItem('weather_config');
+        if (weatherConfig) {
+            const { location, windSpeedUnit, temperatureUnit } = JSON.parse(weatherConfig);
+            locationSearch.val(`${location.name}, ${location.country}, ${location.admin1}`).data('location', {
+                ...location,
+                longitude: location.coords.lon,
+                latitude: location.coords.lat
+            });
+            windSpeedUnitSelect.val(windSpeedUnit);
+            temperatureUnitSelect.val(temperatureUnit);
         }
     }
+
+    // store previous value and handle focus/blur
+    let previousValue = '';
+    locationSearch
+        .on('focus', function () {
+            // store the current value and select all text
+            previousValue = $(this).val();
+            $(this)[0].select();
+        })
+        .on('blur', function () {
+            // if the value changed but no new location was selected, restore previous value
+            setTimeout(() => {
+                const currentVal = $(this).val().trim();
+                if (currentVal !== previousValue && $(this).data('location')) {
+                    $(this).val(previousValue);
+                }
+            }, 200); // small delay to allow click handlers to fire first
+        });
+
+    // add debounced search function
+    let searchTimeout;
+    locationSearch.on('input', function () {
+        clearTimeout(searchTimeout);
+        const query = $(this).val().trim();
+
+        if (query.length < 2) {
+            locationResults.hide();
+            return;
+        }
+
+        searchTimeout = setTimeout(async () => {
+            try {
+                const response = await fetch(
+                    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5`
+                );
+                const data = await response.json();
+
+                if (data.results?.length > 0) {
+                    locationResults.empty();
+                    data.results.forEach(result => {
+                        const locationName = `${result.name}, ${result.country}${result.admin1 ? `, ${result.admin1}` : ''}`;
+                        const div = $('<div>').text(locationName).click(() => {
+                            previousValue = locationName; // Update previous value when new location is selected
+                            locationSearch.val(locationName).data('location', { ...result });
+                            locationResults.hide();
+                        });
+                        locationResults.append(div);
+                    });
+                    locationResults.show();
+                }
+            } catch (error) {
+                console.error('Error searching locations:', error);
+            }
+        }, 500);
+    });
+
+    // hide location results when clicking outside
+    $(document).click(function (event) {
+        if (!$(event.target).closest('#location-search, #location-results').length) {
+            locationResults.hide();
+        }
+    });
 
     // open modal
     settingsBtn.click(function () {
@@ -49,15 +105,21 @@ $(document).ready(function () {
 
     // save settings
     applyBtn.click(function () {
-        const lat = $('#latitude').val();
-        const lon = $('#longitude').val();
-        const windSpeedUnit = $('#wind-speed-unit').val();
-        const temperatureUnit = $('#temperature-unit').val();
+        const { location } = locationSearch.data();
+        const windSpeedUnit = windSpeedUnitSelect.val();
+        const temperatureUnit = temperatureUnitSelect.val();
 
-        if (lat && lon) {
+        if (windSpeedUnit && temperatureUnit && location) {
             const settings = {
-                lat,
-                lon,
+                location: {
+                    name: location.name,
+                    country: location.country,
+                    admin1: location.admin1,
+                    coords: {
+                        lat: location.latitude,
+                        lon: location.longitude
+                    }
+                },
                 windSpeedUnit,
                 temperatureUnit
             };
@@ -95,32 +157,21 @@ function cacheWeatherData(weatherData) {
 async function fetchFreshWeatherData() {
     const openMeteoV1 = "https://api.open-meteo.com/v1/forecast?";
 
-    // TODO: Add all params with defaults to data.js, including units
-    // load from defaults to localStorage from data.js, if not already set
-    // add param options to the settings modal
-    const defaultSettings = {
-        lat: 56.1567,
-        lon: 10.2108,
-        windSpeedUnit: 'ms',
-        temperatureUnit: 'celsius'
-    };
-
     // get settings from localStorage or use defaults
     const weatherConfig = localStorage.getItem('weather_config');
-    const { lat, lon, windSpeedUnit, temperatureUnit } =
-        weatherConfig ? JSON.parse(weatherConfig) : defaultSettings;
+    const { location, windSpeedUnit, temperatureUnit } = JSON.parse(weatherConfig);
 
     const params = {
-        "latitude": lat,
-        "longitude": lon,
+        "latitude": location.coords.lat,
+        "longitude": location.coords.lon,
         "current": [
             "temperature_2m",
             "weather_code",
             "wind_speed_10m"
         ],
         "timezone": "Europe/Copenhagen",
-        "wind_speed_unit": windSpeedUnit || 'ms',
-        "temperature_unit": temperatureUnit || 'celsius'
+        "wind_speed_unit": windSpeedUnit,
+        "temperature_unit": temperatureUnit
     };
 
     const weatherURL = openMeteoV1 + new URLSearchParams({
@@ -152,20 +203,27 @@ async function fetchWeather() {
             weatherData = await fetchFreshWeatherData();
         }
 
+        const { location } = JSON.parse(localStorage.getItem('weather_config'));
         const weatherIcon = mapWMOToOWMAndDescription(weatherData.current.weather_code);
         $("#weather-card").html(
-            `<h1 class="weather-card-title">
-                <i class="wi wi-owm-${weatherIcon.owmCode}" title="${weatherIcon.description}"></i>
-            </h1>
-            <div class="weather-card-details">
-                <p>
-                    <i class="wi wi-thermometer"></i> 
-                    ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}
-                </p>
-                <p>
-                    <i class="wi wi-strong-wind"></i>
-                    ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}
-                </p>
+            `<div class="weather-card-location">
+                <h1 class="weather-card-location-sub">Weather in</h1>
+                <h1 class="weather-card-location-name">${location.name}, ${location.country}</h1>
+            </div>
+            <div id="weather-card-main">
+                <h1 class="weather-card-title">
+                    <i class="wi wi-owm-${weatherIcon.owmCode}" title="${weatherIcon.description}"></i>
+                </h1>
+                <div class="weather-card-details">
+                    <p>
+                        <i class="wi wi-thermometer"></i> 
+                        ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}
+                    </p>
+                    <p>
+                        <i class="wi wi-strong-wind"></i>
+                        ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}
+                    </p>
+                </div>
             </div>`
         );
 

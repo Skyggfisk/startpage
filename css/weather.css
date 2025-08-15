@@ -1,8 +1,17 @@
 #weather-card {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
     font-size: 18px;
     padding: 5px;
     text-align: left;
+
+    div#weather-card-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     h1.weather-card-title {
         font-size: 36px;
@@ -15,10 +24,22 @@
         justify-content: center;
     }
 
+    h1.weather-card-location-sub {
+        font-size: 14px;
+        color: darkgrey;
+    }
+
+    h1.weather-card-location-name {
+        font-size: 20px;
+        color: antiquewhite;
+    }
+
     i {
         color: antiquewhite;
     }
 }
+
+
 
 .weather-card-details {
     padding: 10px 0;
