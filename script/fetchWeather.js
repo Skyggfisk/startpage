@@ -5,23 +5,38 @@ $(document).ready(function () {
     const closeBtn = $('.modal-close');
     const applyBtn = $('#weather-settings-apply');
 
-    // Load existing settings
+    const defaultSettings = {
+        lat: 56.1567,
+        lon: 10.2108,
+        windSpeedUnit: 'ms',
+        temperatureUnit: 'celsius'
+    };
+
+    // load existing settings
     function loadSettings() {
         const settings = localStorage.getItem('weather_config');
         if (settings) {
-            const { lat, lon } = JSON.parse(settings);
+            const { lat, lon, windSpeedUnit, temperatureUnit } = JSON.parse(settings);
             $('#latitude').val(lat);
             $('#longitude').val(lon);
+            $('#wind-speed-unit').val(windSpeedUnit || defaultSettings.windSpeedUnit);
+            $('#temperature-unit').val(temperatureUnit || defaultSettings.temperatureUnit);
+        } else {
+            // set default values if no settings exist
+            $('#latitude').val(defaultSettings.lat);
+            $('#longitude').val(defaultSettings.lon);
+            $('#wind-speed-unit').val(defaultSettings.windSpeedUnit);
+            $('#temperature-unit').val(defaultSettings.temperatureUnit);
         }
     }
 
-    // Open modal
+    // open modal
     settingsBtn.click(function () {
         loadSettings();
         modal.css('display', 'block');
     });
 
-    // Close modal when clicking X or outside
+    // close modal when clicking X or outside
     closeBtn.click(function () {
         modal.css('display', 'none');
     });
@@ -32,17 +47,24 @@ $(document).ready(function () {
         }
     });
 
-    // Save settings
+    // save settings
     applyBtn.click(function () {
         const lat = $('#latitude').val();
         const lon = $('#longitude').val();
+        const windSpeedUnit = $('#wind-speed-unit').val();
+        const temperatureUnit = $('#temperature-unit').val();
 
         if (lat && lon) {
-            const settings = { lat, lon };
+            const settings = {
+                lat,
+                lon,
+                windSpeedUnit,
+                temperatureUnit
+            };
             localStorage.setItem('weather_config', JSON.stringify(settings));
             modal.css('display', 'none');
-            // Refresh weather data with new coordinates
-            fetchWeather();
+            // refresh weather data with new settings
+            refreshWeather();
         }
     });
 });
@@ -76,30 +98,29 @@ async function fetchFreshWeatherData() {
     // TODO: Add all params with defaults to data.js, including units
     // load from defaults to localStorage from data.js, if not already set
     // add param options to the settings modal
-    const defaultCoords = {
+    const defaultSettings = {
         lat: 56.1567,
-        lon: 10.2108
+        lon: 10.2108,
+        windSpeedUnit: 'ms',
+        temperatureUnit: 'celsius'
     };
 
-    // Get coordinates from localStorage or use defaults
+    // get settings from localStorage or use defaults
     const weatherConfig = localStorage.getItem('weather_config');
-    const { lat, lon } = weatherConfig ? JSON.parse(weatherConfig) : defaultCoords;
+    const { lat, lon, windSpeedUnit, temperatureUnit } =
+        weatherConfig ? JSON.parse(weatherConfig) : defaultSettings;
 
     const params = {
         "latitude": lat,
         "longitude": lon,
         "current": [
             "temperature_2m",
-            "is_day",
-            "precipitation",
-            "rain",
-            "showers",
-            "snowfall",
             "weather_code",
             "wind_speed_10m"
         ],
         "timezone": "Europe/Copenhagen",
-        "wind_speed_unit": "ms"
+        "wind_speed_unit": windSpeedUnit || 'ms',
+        "temperature_unit": temperatureUnit || 'celsius'
     };
 
     const weatherURL = openMeteoV1 + new URLSearchParams({

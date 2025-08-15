@@ -94,6 +94,22 @@
     /* Standard */
 }
 
+.form-group select {
+    width: 100%;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    color: whitesmoke;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background-color: #1a1a1a;
+    color: whitesmoke;
+}
+
 .modal-footer {
     padding: 8px 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);

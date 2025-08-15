@@ -80,6 +80,21 @@
               <label for="longitude">Longitude:</label>
               <input type="number" id="longitude" step="0.000001" placeholder="Enter longitude">
             </div>
+            <div class="form-group">
+              <label for="wind-speed-unit">Wind Speed Unit:</label>
+              <select id="wind-speed-unit">
+                <option value="ms">m/s</option>
+                <option value="kmh">km/h</option>
+                <option value="mph">mph</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="temperature-unit">Temperature Unit:</label>
+              <select id="temperature-unit">
+                <option value="celsius">°C</option>
+                <option value="fahrenheit">°F</option>
+              </select>
+            </div>
           </div>
           <div class="modal-footer">
             <button id="weather-settings-apply">Apply</button>
