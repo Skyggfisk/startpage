@@ -99,8 +99,8 @@
 
       <div class="container container-side">
         <div class="container-controls">
-          <button id="weather-refresh-button" title="refresh weather data">↻</button>
-          <button id="weather-settings-button" title="weather settings">⚙</button>
+          <button id="weather-refresh-button" title="Refresh weather data">↻</button>
+          <button id="weather-settings-button" title="Weather settings">⚙</button>
         </div>
         <div id="weather-card"></div>
       </div>
@@ -155,7 +155,37 @@
     </section>
     <section class="center-panel col-5">
       <div class="container">
+        <div class="container-controls">
+          <button id="quote-settings-button" title="Quotes settings">⚙</button>
+        </div>
         <div class="quote-card"></div>
+      </div>
+
+      <!-- Quote Settings Modal -->
+      <div id="quote-settings-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Quotes Settings</h3>
+            <button id="close-quote-settings-button" class="modal-settings-close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="form-subgroup">
+                <div id="quotes-list">
+                  <!-- Quotes will be populated here -->
+                </div>
+                <label for="new-quote">New Quote:</label>
+                <textarea id="new-quote" placeholder="Enter your quote"></textarea>
+                <label for="new-author">Author:</label>
+                <input type="text" id="new-author" placeholder="Enter the author">
+                <button id="add-quote-button" class="modal-settings-add">Add Quote</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="apply-quote-settings-button" class="modal-settings-apply">Apply</button>
+          </div>
+        </div>
       </div>
       <div class="container">
         <div id="bookmarks-card"></div>

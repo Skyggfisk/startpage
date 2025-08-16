@@ -90,14 +90,84 @@ function initRss() {
   rssFeed();
 };
 
-// Grab a random quote and display it
+// Initialize quotes card functionality
 function initQuote() {
-  const quotes = getStorageItem("quotes");
-  const r = randomInt(quotes.length);
-  const { quote, author } = quotes[r];
-  $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
-  $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
+  const quoteSettingsModal = $("#quote-settings-modal");
+  const quoteSettingsBtn = $("#quote-settings-button");
+  const closeQuoteSettingsBtn = $("#close-quote-settings-button");
+  const addQuoteBtn = $("#add-quote-button");
+  const applyQuoteSettingsBtn = $("#apply-quote-settings-button");
+  const newQuoteInput = $("#new-quote");
+  const newAuthorInput = $("#new-author");
+  let tempQuotes = [];
+
+  function displayQuote() {
+    const quotes = getStorageItem("quotes");
+    const r = randomInt(quotes.length);
+    const { quote, author } = quotes[r];
+    $(".quote-card").empty();
+    $(".quote-card").append(`<p class="quote-text">"${quote}"</p>`);
+    $(".quote-card").append(`<p class="quote-author">-${author}</p>`);
+  }
+
+  function updateQuotesList() {
+    const quotesList = $("#quotes-list");
+    quotesList.empty();
+
+    tempQuotes.forEach((q, index) => {
+      quotesList.append(`
+        <div class="quote-item">
+          <p class="quote-item-text">"${q.quote}"</p>
+          <p class="quote-item-author">-${q.author}</p>
+          <button class="delete-quote" data-index="${index}">&times;</button>
+        </div>
+      `);
+    });
+
+    $(".delete-quote").click(function () {
+      const index = $(this).data("index");
+      tempQuotes.splice(index, 1);
+      updateQuotesList();
+    });
+  }
+
+  quoteSettingsBtn.click(function () {
+    tempQuotes = JSON.parse(JSON.stringify(getStorageItem("quotes")));
+    updateQuotesList();
+    quoteSettingsModal.css("display", "block");
+  });
+
+  closeQuoteSettingsBtn.click(function () {
+    quoteSettingsModal.css("display", "none");
+  });
+
+  $(window).click(function (event) {
+    if (event.target === quoteSettingsModal[0]) {
+      quoteSettingsModal.css("display", "none");
+    }
+  });
+
+  addQuoteBtn.click(function () {
+    const quote = newQuoteInput.val().trim();
+    const author = newAuthorInput.val().trim();
+
+    if (quote && author) {
+      tempQuotes.push({ quote, author });
+      updateQuotesList();
+      newQuoteInput.val("");
+      newAuthorInput.val("");
+    }
+  });
+
+  applyQuoteSettingsBtn.click(function () {
+    updateStorageItem("quotes", tempQuotes);
+    quoteSettingsModal.css("display", "none");
+    displayQuote();
+  });
+
+  displayQuote();
   $(".quote-card").click(function () {
+    const quotes = getStorageItem("quotes");
     const r = randomInt(quotes.length);
     const { quote, author } = quotes[r];
 
