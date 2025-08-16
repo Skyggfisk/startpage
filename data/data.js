@@ -1,4 +1,10 @@
-const default_user = "Skyggfisk";
+const default_user = {
+  userName: "Skyggfisk",
+  dateTime: {
+    clockFormat: "24-hour",
+    dateFormat: "dd-mm-yyyy"
+  }
+};
 
 const default_locations = ["551890"];
 

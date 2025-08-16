@@ -73,6 +73,23 @@
                 <input type="text" id="user-name" placeholder="Enter your username">
               </div>
             </div>
+            <fieldset class="form-group">
+              <legend>Datetime Format</legend>
+              <div class="form-subgroup">
+                <label for="clock-format">Clock:</label>
+                <select id="clock-format">
+                  <option value="12-hour">12-hour</option>
+                  <option value="24-hour">24-hour</option>
+                </select>
+              </div>
+              <div class="form-subgroup">
+                <label for="date-format">Date:</label>
+                <select id="date-format">
+                  <option value="dd-mm-yyyy">DD-MM-YYYY</option>
+                  <option value="mm-dd-yyyy">MM-DD-YYYY</option>
+                </select>
+              </div>
+            </fieldset>
           </div>
           <div class="modal-footer">
             <button id="apply-user-settings-button" class="modal-settings-apply">Apply</button>

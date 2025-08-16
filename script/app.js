@@ -34,7 +34,9 @@ function initGreetings() {
   const closeUserSettingsBtn = $("#close-user-settings-button");
   const userNameInput = $("#user-name");
   const applyUserSettingsBtn = $("#apply-user-settings-button");
-  const user = getStorageItem("user");
+  const clockFormatSelect = $("#clock-format");
+  const dateFormatSelect = $("#date-format");
+  const { userName, dateTime: { clockFormat, dateFormat } } = getStorageItem("user");
 
   userSettingsBtn.click(function () {
     userSettingsModal.css("display", "block");
@@ -53,8 +55,14 @@ function initGreetings() {
   applyUserSettingsBtn.click(function () {
     const userName = userNameInput.val();
     userSettingsModal.css("display", "none");
-    updateStorageItem("user", userName);
+    updateStorageItem("user", {
+      userName, dateTime: {
+        clockFormat: clockFormatSelect.val(),
+        dateFormat: dateFormatSelect.val()
+      }
+    });
     $(".greetings .greetings-name").html(userName);
+    initClock(); // restart the clock
   });
 
   userNameInput
@@ -63,13 +71,15 @@ function initGreetings() {
     })
     .on('blur', function () {
       if (userNameInput.val().trim() === "") {
-        userNameInput.val(user);
+        userNameInput.val(userName);
       }
     });
 
   // initial setup
-  userNameInput.val(user);
-  $(".greetings .greetings-name").html(user);
+  userNameInput.val(userName);
+  clockFormatSelect.val(clockFormat);
+  dateFormatSelect.val(dateFormat);
+  $(".greetings .greetings-name").html(userName);
 }
 
 function initRss() {
@@ -159,19 +169,39 @@ function initBookmarks() {
 // TODO: Temporal hype?
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal
 // Create the clock, display date and time and greet based on time of day
-function initClock() {
+let clockTimer = null;
+
+function stopClock() {
+  if (clockTimer) {
+    clearTimeout(clockTimer);
+    clockTimer = null;
+  }
+}
+
+function updateClock() {
+  const { dateTime: { clockFormat, dateFormat } } = getStorageItem("user");
   const now = new Date();
   let h = now.getHours();
   const timeOfDay =
     h < 12 ? "morning" : h >= 12 && h < 19 ? "afternoon" : "evening";
 
-  $(".time-hours").html(`${now.toLocaleTimeString("en-GB")}`);
-  $(".date-day").html(`${now.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })}`);
+  $(".time-hours").html(`${now.toLocaleTimeString(clockFormat === "12-hour" ? "en-US" : "en-GB")}`);
+  $(".date-day").html(`${now.toLocaleDateString(dateFormat === "mm-dd-yyyy" ? "en-US" : "en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })}`);
 
   $(".greetings-title").html(`Good ${timeOfDay},`);
+}
 
-  // update every half a second to not miss a second
-  setTimeout(initClock, 500);
+function initClock() {
+  // stop any existing clock timer
+  stopClock();
+
+  // update immediately
+  updateClock();
+
+  clockTimer = setTimeout(function tick() {
+    updateClock();
+    clockTimer = setTimeout(tick, 500);
+  }, 500);
 }
 
 function initWeather() {
