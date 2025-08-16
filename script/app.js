@@ -119,7 +119,7 @@ function initQuote() {
         <div class="quote-item">
           <p class="quote-item-text">"${q.quote}"</p>
           <p class="quote-item-author">-${q.author}</p>
-          <button class="delete-quote" data-index="${index}">&times;</button>
+          <button class="delete-quote" data-index="${index}" title="Delete quote">&times;</button>
         </div>
       `);
     });

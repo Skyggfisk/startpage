@@ -8,3 +8,57 @@
     padding: 0 0 10px;
     color: darkgrey;
 }
+
+/* Quotes settings modal styles */
+#quotes-list {
+    max-height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+#quotes-list::-webkit-scrollbar {
+    display: none;
+}
+
+.quote-item {
+    padding: 8px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    position: relative;
+}
+
+.quote-item-text {
+    padding-right: 24px;
+    padding-bottom: 4px;
+    color: antiquewhite;
+}
+
+.quote-item-author {
+    color: darkgrey;
+    font-style: italic;
+    padding: 4px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quote-item .delete-quote {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background: none;
+    border: none;
+    color: antiquewhite;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#new-quote {
+    min-height: 60px;
+    margin-bottom: 8px;
+    resize: none;
+}
