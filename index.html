@@ -35,6 +35,9 @@
     <!-- TODO: add icons for date (calendar), time (clock)? -->
     <section class="side-panel col-3">
       <div class="container container-side">
+        <div class="container-controls">
+          <button id="owl-settings-button" title="User and clock settings">⚙</button>
+        </div>
         <div id="owl">
           <div id="datetime-card">
             <p class="clock"><span class="time-hours"></span></p>
@@ -56,6 +59,27 @@
         </div>
       </div>
 
+      <!-- User Settings Modal -->
+      <div id="user-settings-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>User Settings</h3>
+            <button id="close-user-settings-button" class="modal-settings-close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="form-subgroup">
+                <label for="user-name">Username:</label>
+                <input type="text" id="user-name" placeholder="Enter your username">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="apply-user-settings-button" class="modal-settings-apply">Apply</button>
+          </div>
+        </div>
+      </div>
+
       <div class="container container-side">
         <div class="container-controls">
           <button id="weather-refresh-button" title="refresh weather data">↻</button>
@@ -69,7 +93,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3>Weather Settings</h3>
-            <button id="weather-settings-close">&times;</button>
+            <button id="weather-settings-close" class="modal-settings-close">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -99,7 +123,7 @@
             </fieldset>
           </div>
           <div class="modal-footer">
-            <button id="weather-settings-apply">Apply</button>
+            <button id="weather-settings-apply" class="modal-settings-apply">Apply</button>
           </div>
         </div>
       </div>

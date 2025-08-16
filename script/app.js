@@ -28,7 +28,32 @@ function initTitle() {
 
 // Greet the user
 function initGreetings() {
+  // set up the user settings modal
+  const userSettingsModal = $("#user-settings-modal");
+  const userSettingsBtn = $("#owl-settings-button");
+  const closeUserSettingsBtn = $("#close-user-settings-button");
+  const userNameInput = $("#user-name");
+  const applyUserSettingsBtn = $("#apply-user-settings-button");
+  userSettingsBtn.click(function () {
+    userSettingsModal.css("display", "block");
+  });
+  closeUserSettingsBtn.click(function () {
+    userSettingsModal.css("display", "none");
+  });
+  applyUserSettingsBtn.click(function () {
+    const userName = userNameInput.val();
+    userSettingsModal.css("display", "none");
+    updateStorageItem("user", userName);
+    $(".greetings .greetings-name").html(userName);
+  });
+  $(window).click(function (event) {
+    if (event.target === userSettingsModal[0]) {
+      userSettingsModal.css("display", "none");
+    }
+  });
+
   const user = getStorageItem("user");
+  userNameInput.val(user);
   $(".greetings .greetings-name").html(user);
 }
 
