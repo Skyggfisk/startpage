@@ -34,25 +34,40 @@ function initGreetings() {
   const closeUserSettingsBtn = $("#close-user-settings-button");
   const userNameInput = $("#user-name");
   const applyUserSettingsBtn = $("#apply-user-settings-button");
+  const user = getStorageItem("user");
+
   userSettingsBtn.click(function () {
     userSettingsModal.css("display", "block");
   });
+
   closeUserSettingsBtn.click(function () {
     userSettingsModal.css("display", "none");
   });
-  applyUserSettingsBtn.click(function () {
-    const userName = userNameInput.val();
-    userSettingsModal.css("display", "none");
-    updateStorageItem("user", userName);
-    $(".greetings .greetings-name").html(userName);
-  });
+
   $(window).click(function (event) {
     if (event.target === userSettingsModal[0]) {
       userSettingsModal.css("display", "none");
     }
   });
 
-  const user = getStorageItem("user");
+  applyUserSettingsBtn.click(function () {
+    const userName = userNameInput.val();
+    userSettingsModal.css("display", "none");
+    updateStorageItem("user", userName);
+    $(".greetings .greetings-name").html(userName);
+  });
+
+  userNameInput
+    .on('focus', function () {
+      userNameInput.select();
+    })
+    .on('blur', function () {
+      if (userNameInput.val().trim() === "") {
+        userNameInput.val(user);
+      }
+    });
+
+  // initial setup
   userNameInput.val(user);
   $(".greetings .greetings-name").html(user);
 }
